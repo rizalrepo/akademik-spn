@@ -81,51 +81,78 @@ if (!isset($_SESSION['login'])) {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link" href="<?= base_url() ?>/view/admin/">
-                                                    <i class="mdi mdi-airplay me-1"></i>Dashboard
+                                                    <i class="mdi mdi-airplay me-2"></i>Dashboard
                                                 </a>
                                             </li>
 
-                                            <li class="nav-item dropdown <?php if ($page == 'gadik' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas') {
+                                            <li class="nav-item dropdown <?php if ($page == 'user' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas') {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
-                                                    <i class="bi bi-bar-chart-steps me-1"></i>Data Master <div class="arrow-down"></div>
+                                                    <i class="bi bi-bar-chart-steps me-2"></i>Data Master <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-master">
                                                     <a href="<?= base_url() ?>/view/admin/user/" class="dropdown-item <?php if ($page == 'user') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="fas fa-user-friends me-1"></i>Data Pengguna</a>
+                                                                                                                        } ?>"><i class="fas fa-user-friends me-2"></i>Data Pengguna</a>
                                                     <a href="<?= base_url() ?>/view/admin/pangkat/" class="dropdown-item <?php if ($page == 'pangkat') {
                                                                                                                                 echo 'active';
-                                                                                                                            } ?>"><i class="fas fa-award me-1"></i>Data Pangkat</a>
+                                                                                                                            } ?>"><i class="fas fa-award me-2"></i>Data Pangkat</a>
                                                     <a href="<?= base_url() ?>/view/admin/jabatan/" class="dropdown-item <?php if ($page == 'jabatan') {
                                                                                                                                 echo 'active';
-                                                                                                                            } ?>"><i class="fas fa-sitemap me-1"></i>Data Jabatan</a>
+                                                                                                                            } ?>"><i class="fas fa-sitemap me-2"></i>Data Jabatan</a>
                                                     <a href="<?= base_url() ?>/view/admin/asuhan/" class="dropdown-item <?php if ($page == 'asuhan') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="fas fa-layer-group me-1"></i>Data Asuhan</a>
+                                                                                                                        } ?>"><i class="fas fa-layer-group me-2"></i>Data Asuhan</a>
                                                     <a href="<?= base_url() ?>/view/admin/jabatan-asuhan/" class="dropdown-item <?php if ($page == 'jabatan_asuhan') {
                                                                                                                                     echo 'active';
-                                                                                                                                } ?>"><i class="fas fa-user-tag me-1"></i>Data Jabatan Asuhan</a>
+                                                                                                                                } ?>"><i class="fas fa-user-tag me-2"></i>Data Jabatan Asuhan</a>
                                                     <a href="<?= base_url() ?>/view/admin/mapel/" class="dropdown-item <?php if ($page == 'mapel') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="fas fa-clipboard-list me-1"></i>Data Mata Pelajaran</a>
+                                                                                                                        } ?>"><i class="fas fa-clipboard-list me-2"></i>Data Mata Pelajaran</a>
                                                     <a href="<?= base_url() ?>/view/admin/kelas/" class="dropdown-item <?php if ($page == 'kelas') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="bi bi-building me-1"></i>Data Ruang Kelas</a>
+                                                                                                                        } ?>"><i class="bi bi-building me-2"></i>Data Ruang Kelas</a>
                                                 </div>
                                             </li>
 
-                                            <li class="nav-item dropdown <?php if ($page == 'gadik') {
+                                            <li class="nav-item dropdown <?php if ($page == 'gadik' || $page == 'gadik_mapel' || $page == 'pengasuh' || $page == 'jadwal') {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
-                                                    <i class="fas fa-user-graduate me-1"></i>Menu Gadik <div class="arrow-down"></div>
+                                                    <i class="fas fa-user-graduate me-2"></i>Menu Gadik <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-gadik">
                                                     <a href="<?= base_url() ?>/view/admin/gadik/" class="dropdown-item <?php if ($page == 'gadik') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="fas fa-id-badge me-1"></i>Data Gadik</a>
+                                                                                                                        } ?>"><i class="fas fa-id-badge me-2"></i>Data Gadik</a>
+                                                    <a href="<?= base_url() ?>/view/admin/pengasuh/" class="dropdown-item <?php if ($page == 'pengasuh') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="fas fa-house-user me-2"></i>Data Pengasuh</a>
+                                                    <a href="<?= base_url() ?>/view/admin/gadik-mapel/" class="dropdown-item <?php if ($page == 'gadik_mapel') {
+                                                                                                                                    echo 'active';
+                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</a>
+                                                    <a href="<?= base_url() ?>/view/admin/jadwal/" class="dropdown-item <?php if ($page == 'jadwal') {
+                                                                                                                            echo 'active';
+                                                                                                                        } ?>"><i class="fas fa-user-clock me-2"></i>Data Jadwal Mengajar</a>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown <?php if ($page == 'siswa' || $page == 'kelas_siswa' || $page == 'absensi') {
+                                                                                echo 'active';
+                                                                            } ?>">
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-graduation-cap me-2"></i>Menu Siswa <div class="arrow-down"></div>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-siswa">
+                                                    <a href="<?= base_url() ?>/view/admin/siswa/" class="dropdown-item <?php if ($page == 'siswa') {
+                                                                                                                            echo 'active';
+                                                                                                                        } ?>"><i class="bi bi-person-lines-fill me-2"></i>Data Siswa</a>
+                                                    <a href="<?= base_url() ?>/view/admin/kelas-siswa/" class="dropdown-item <?php if ($page == 'kelas_siswa') {
+                                                                                                                                    echo 'active';
+                                                                                                                                } ?>"><i class="bi bi-building-check me-2"></i>Data Kelas Siswa</a>
+                                                    <a href="<?= base_url() ?>/view/admin/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a>
                                                 </div>
                                             </li>
                                         <?php } ?>
@@ -145,9 +172,9 @@ if (!isset($_SESSION['login'])) {
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="<?= base_url() ?>/view/auth/ubah-pw"><i class="bx bx-key font-size-16 align-middle me-1"></i>Ubah Password</a>
+                                <a class="dropdown-item" href="<?= base_url() ?>/view/auth/ubah-pw"><i class="bx bx-key font-size-16 align-middle me-2"></i>Ubah Password</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger alert-logout" href="<?= base_url() ?>/view/auth/logout"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger alert-logout" href="<?= base_url() ?>/view/auth/logout"><i class="bx bx-power-off font-size-16 align-middle me-2 text-danger"></i> Logout</a>
                             </div>
                         </div>
                         <div class="dropdown d-inline-block">

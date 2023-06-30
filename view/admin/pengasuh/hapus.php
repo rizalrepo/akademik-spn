@@ -5,7 +5,7 @@ include_once '../../layout/footer.php';
 
 $id = $_GET['id'];
 
-$query = $con->query(" DELETE FROM gadik WHERE id_gadik = '$id' ");
+$query = $con->query(" DELETE FROM pengasuh WHERE id_pengasuh = '$id' ");
 if ($query) {
     $_SESSION['pesan'] = "Data Berhasil di Hapus";
     echo "<meta http-equiv='refresh' content='0; url=index'>";

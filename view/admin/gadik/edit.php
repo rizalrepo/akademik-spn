@@ -1,10 +1,10 @@
 <?php
 require '../../../app/config.php';
-$page = 'pegawai';
+$page = 'gadik';
 include_once '../../layout/topbar.php';
 
 $id = $_GET['id'];
-$query = $con->query("SELECT * FROM pegawai WHERE id_pegawai ='$id'");
+$query = $con->query("SELECT * FROM gadik WHERE id_gadik ='$id'");
 $row = $query->fetch_array();
 
 $jk2 = [
@@ -12,76 +12,54 @@ $jk2 = [
     'Laki-laki' => 'Laki-laki',
     'Perempuan' => 'Perempuan',
 ];
-
-$sts = [
-    '' => '-- Pilih --',
-    'PNS' => 'PNS',
-    'Honorer' => 'Honorer',
-];
 ?>
 
 <div class="page-content">
     <div class="row">
-
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Edit Data Pegawai</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Edit Data Gadik</h4>
 
                 <div class="page-title-right">
                     <a href="index" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
                 </div>
             </div>
-            <div class="card card-body border border-danger">
+            <div class="card card-body border border-dark-danger">
                 <form class="form-horizontal needs-validation" novalidate method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nm_pegawai" value="<?= $row['nm_pegawai'] ?>" required>
+                            <input type="text" class="form-control" name="nm_gadik" value="<?= $row['nm_gadik'] ?>" required>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Nomor Induk KTP</label>
+                        <label class="col-sm-2 col-form-label">NRP / NIP</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name="nik" value="<?= $row['nik'] ?>" required>
+                            <input type="text" class="form-control" name="nrp_nip" value="<?= $row['nrp_nip'] ?>" required>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Status</label>
+                        <label class="col-sm-2 col-form-label">Pangkat</label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('status', $sts, $row['status'], 'id="sts" class="form-select" required') ?>
-                            <div class="invalid-feedback">Kolom harus di pilih !</div>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3" id="nip" hidden>
-                        <label class="col-sm-2 col-form-label">NIP</label>
-                        <div class="col-sm-10">
-                            <input type="number" id="nip2" class="form-control" value="<?= $row['nip'] ?>" name="nip">
-                            <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3" id="gol" hidden>
-                        <label class="col-sm-2 col-form-label">Golongan</label>
-                        <div class="col-sm-10">
-                            <select name="id_golongan" id="gol2" class="form-select select2" style="width: 100%;">
-                                <option value="">-- Pilih --</option>
-                                <?php $data = $con->query("SELECT * FROM golongan ORDER BY id_golongan ASC"); ?>
+                            <select name="id_pangkat" class="form-select select2" style="width: 100%;" required>
+                                <?php $data = $con->query("SELECT * FROM pangkat ORDER BY id_pangkat ASC"); ?>
                                 <?php foreach ($data as $d) :
-                                    if ($d['id_golongan'] == $row['id_golongan']) { ?>
-                                        <option value="<?= $d['id_golongan']; ?>" selected="<?= $d['id_golongan']; ?>"><?= $d['nm_golongan'] . ' - ' . $d['pangkat'] ?></option>
+                                    if ($d['id_pangkat'] == $row['id_pangkat']) { ?>
+                                        <option value="<?= $d['id_pangkat']; ?>" selected="<?= $d['id_pangkat']; ?>"><?= $d['nm_pangkat'] ?></option>
                                     <?php } else { ?>
-                                        <option value="<?= $d['id_golongan'] ?>"><?= $d['nm_golongan'] . ' - ' . $d['pangkat'] ?></option>
+                                        <option value="<?= $d['id_pangkat'] ?>"><?= $d['nm_pangkat'] ?></option>
                                 <?php }
                                 endforeach ?>
                             </select>
+                            <div class="invalid-feedback">Kolom harus di pilih !</div>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Jabatan</label>
                         <div class="col-sm-10">
-                            <select name="id_jabatan" class="form-select select2" style="width: 100%;">
-                                <option value="">-- Pilih --</option>
+                            <select name="id_jabatan" class="form-select select2" style="width: 100%;" required>
                                 <?php $data = $con->query("SELECT * FROM jabatan ORDER BY id_jabatan ASC"); ?>
                                 <?php foreach ($data as $d) :
                                     if ($d['id_jabatan'] == $row['id_jabatan']) { ?>
@@ -91,6 +69,7 @@ $sts = [
                                 <?php }
                                 endforeach ?>
                             </select>
+                            <div class="invalid-feedback">Kolom harus di pilih !</div>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -121,7 +100,6 @@ $sts = [
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>
-
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-10">
@@ -129,7 +107,6 @@ $sts = [
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>
-
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">No. HP</label>
                         <div class="col-sm-10">
@@ -161,44 +138,11 @@ $sts = [
 include_once '../../layout/footer.php';
 ?>
 <script src="<?= base_url() ?>/app/js/app.js"></script>
-<script type='text/javascript'>
-    $(document).ready(function() {
-
-        if ($("#sts option:selected").val() == 'PNS') {
-            $('#gol').prop('hidden', false);
-            $('#nip').prop('hidden', false);
-            $('#gol2').attr('required', true);
-            $('#nip2').attr('required', true);
-        } else {
-            $('#gol').prop('hidden', true);
-            $('#nip').prop('hidden', true);
-            $('#gol2').removeAttr('required');
-            $('#nip2').removeAttr('required');
-        }
-
-        $("#sts").change(function() {
-            if ($("#sts option:selected").val() == 'PNS') {
-                $('#gol').prop('hidden', false);
-                $('#nip').prop('hidden', false);
-                $('#gol2').attr('required', true);
-                $('#nip2').attr('required', true);
-            } else {
-                $('#gol').prop('hidden', true);
-                $('#nip').prop('hidden', true);
-                $('#gol2').removeAttr('required');
-                $('#nip2').removeAttr('required');
-            }
-        });
-    });
-</script>
-
 <?php
 if (isset($_POST['submit'])) {
-    $nm_pegawai = $_POST['nm_pegawai'];
-    $nik = $_POST['nik'];
-    $status = $_POST['status'];
-    $nip = $_POST['nip'];
-    $id_golongan = $_POST['id_golongan'];
+    $nm_gadik = $_POST['nm_gadik'];
+    $nrp_nip = $_POST['nrp_nip'];
+    $id_pangkat = $_POST['id_pangkat'];
     $id_jabatan = $_POST['id_jabatan'];
     $tmpt_lahir = $_POST['tmpt_lahir'];
     $tgl_lahir = $_POST['tgl_lahir'];
@@ -208,12 +152,10 @@ if (isset($_POST['submit'])) {
     $hp = $_POST['hp'];
     $tmt = $_POST['tmt'];
 
-    $update = $con->query("UPDATE pegawai SET 
-        nm_pegawai = '$nm_pegawai',
-        nik = '$nik',
-        status = '$status',
-        nip = '$nip',
-        id_golongan = '$id_golongan',
+    $update = $con->query("UPDATE gadik SET 
+        nm_gadik = '$nm_gadik',
+        nrp_nip = '$nrp_nip',
+        id_pangkat = '$id_pangkat',
         id_jabatan = '$id_jabatan',
         tmpt_lahir = '$tmpt_lahir',
         tgl_lahir = '$tgl_lahir',
@@ -222,10 +164,15 @@ if (isset($_POST['submit'])) {
         alamat = '$alamat',
         hp = '$hp',
         tmt = '$tmt'
-        WHERE id_pegawai = '$id'
+        WHERE id_gadik = '$id'
     ");
 
     if ($update) {
+        $con->query("UPDATE user SET
+            nm_user = '$nm_gadik',
+            username = '$nrp_nip'
+            WHERE id_gadik = '$id' 
+        ");
         $_SESSION['pesan'] = "Data Berhasil di Update";
         echo "<meta http-equiv='refresh' content='0; url=index'>";
     } else {
