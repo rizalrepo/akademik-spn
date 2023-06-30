@@ -139,6 +139,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     background-color: #cc2a11 !important;
 } */
 
+/* untuk setting warna header di app.min.css */
+
 body[data-layout=horizontal][data-bs-theme=light][data-topbar=colored] #page-topbar{
     background-color: #cc2a11 !important;
 }

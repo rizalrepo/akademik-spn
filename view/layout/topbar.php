@@ -85,7 +85,7 @@ if (!isset($_SESSION['login'])) {
                                                 </a>
                                             </li>
 
-                                            <li class="nav-item dropdown <?php if ($page == 'user' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas') {
+                                            <li class="nav-item dropdown <?php if ($page == 'gadik' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas') {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
@@ -116,20 +116,17 @@ if (!isset($_SESSION['login'])) {
                                                 </div>
                                             </li>
 
-                                            <li class="nav-item dropdown <?php if ($page == 'pegawai') {
+                                            <li class="nav-item dropdown <?php if ($page == 'gadik') {
                                                                                 echo 'active';
                                                                             } ?>">
-                                                <a class="nav-link" href="<?= base_url() ?>/view/admin/pegawai">
-                                                    <i class="fas fa-id-badge me-1"></i>Data Pegawai
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-user-graduate me-1"></i>Menu Gadik <div class="arrow-down"></div>
                                                 </a>
-                                            </li>
-
-                                            <li class="nav-item dropdown <?php if ($page == 'penduduk') {
-                                                                                echo 'active';
-                                                                            } ?>">
-                                                <a class="nav-link" href="<?= base_url() ?>/view/admin/penduduk/">
-                                                    <i class="bi bi-person-vcard-fill me-1"></i>Data Penduduk
-                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-gadik">
+                                                    <a href="<?= base_url() ?>/view/admin/gadik/" class="dropdown-item <?php if ($page == 'gadik') {
+                                                                                                                            echo 'active';
+                                                                                                                        } ?>"><i class="fas fa-id-badge me-1"></i>Data Gadik</a>
+                                                </div>
                                             </li>
                                         <?php } ?>
                                     </ul>
