@@ -30,7 +30,7 @@ $a = $con->query("SELECT COUNT(*) AS total FROM gadik")->fetch_array();
                     <div class="d-flex align-items-start my-2">
                         <div class="me-3 align-self-center">
                             <div class="avatar-sm font-size-20">
-                                <span class="avatar-title bg-soft-primary text-primary rounded">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
                                     <i class="fas fa-id-badge"></i>
                                 </span>
                             </div>

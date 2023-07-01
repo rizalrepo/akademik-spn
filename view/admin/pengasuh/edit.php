@@ -6,12 +6,6 @@ include_once '../../layout/topbar.php';
 $id = $_GET['id'];
 $query = $con->query("SELECT * FROM pengasuh a JOIN gadik b ON a.id_gadik = b.id_gadik JOIN pangkat c ON b.id_pangkat = c.id_pangkat JOIN jabatan d ON b.id_jabatan = d.id_jabatan JOIN asuhan f ON a.id_asuhan = f.id_asuhan WHERE a.id_pengasuh ='$id'");
 $row = $query->fetch_array();
-
-$jk2 = [
-    '' => '-- Pilih --',
-    'Laki-laki' => 'Laki-laki',
-    'Perempuan' => 'Perempuan',
-];
 ?>
 
 <div class="page-content">
@@ -134,7 +128,7 @@ $jk2 = [
                                     <td align="center"><?= $row['nm_pangkat'] ?></td>
                                     <td align="center"><?= $row['nm_jabatan'] ?></td>
                                     <td align="center" width="18%">
-                                        <button class="btn btn-xs bg-success" id="select" data-nm_gadik="<?= $row['nm_gadik'] ?>" data-id_gadik="<?= $row['id_gadik'] ?>" data-nrp_nip="<?= $row['nrp_nip']  ?>" data-nm_pangkat="<?= $row['nm_pangkat']  ?>" data-nm_jabatan="<?= $row['nm_jabatan'] ?>">
+                                        <button class="btn btn-xs btn-success" id="select" data-nm_gadik="<?= $row['nm_gadik'] ?>" data-id_gadik="<?= $row['id_gadik'] ?>" data-nrp_nip="<?= $row['nrp_nip']  ?>" data-nm_pangkat="<?= $row['nm_pangkat']  ?>" data-nm_jabatan="<?= $row['nm_jabatan'] ?>">
                                             <i class="fas fa-check-circle"></i> Pilih
                                         </button>
                                     </td>

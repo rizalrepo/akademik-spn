@@ -1,7 +1,8 @@
 <?php
 require '../../../app/config.php';
-$page = 'pengasuh';
+$page = 'gadik_mapel';
 include_once '../../layout/topbar.php';
+$dt = $_GET['ta'];
 ?>
 
 <div class="page-content">
@@ -9,16 +10,16 @@ include_once '../../layout/topbar.php';
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Tambah Data Pengasuh</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Tambah Data Gadik Mapel</h4>
 
                 <div class="page-title-right">
-                    <a href="index" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
+                    <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
                 </div>
             </div>
             <div class="card card-body border border-danger mb-5">
                 <form class="form-horizontal needs-validation" novalidate method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Nama Pengasuh</label>
+                        <label class="col-sm-2 col-form-label">Nama Gadik</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="text" class="form-control" hidden name="id_gadik" id="id_gadik" required>
@@ -47,6 +48,19 @@ include_once '../../layout/topbar.php';
                         </div>
                     </div>
                     <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
+                        <div class="col-sm-10">
+                            <select name="id_mapel" class="form-select select2" style="width: 100%;" required>
+                                <option value="">-- Pilih --</option>
+                                <?php $data = $con->query("SELECT * FROM mapel ORDER BY id_mapel ASC"); ?>
+                                <?php foreach ($data as $row) : ?>
+                                    <option value="<?= $row['id_mapel'] ?>"><?= $row['kd_mapel'] . ' - ' . $row['nm_mapel'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <div class="invalid-feedback">Kolom harus di pilih !</div>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
                         <div class="col-sm-10">
                             <select name="id_asuhan" class="form-select select2" style="width: 100%;" required>
@@ -54,19 +68,6 @@ include_once '../../layout/topbar.php';
                                 <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
                                 <?php foreach ($data as $row) : ?>
                                     <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] ?> <?= $row['gelombang'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <div class="invalid-feedback">Kolom harus di pilih !</div>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Jabatan Asuhan</label>
-                        <div class="col-sm-10">
-                            <select name="id_jabatan_asuhan" class="form-select select2" style="width: 100%;" required>
-                                <option value="">-- Pilih --</option>
-                                <?php $data = $con->query("SELECT * FROM jabatan_asuhan ORDER BY id_jabatan_asuhan ASC"); ?>
-                                <?php foreach ($data as $row) : ?>
-                                    <option value="<?= $row['id_jabatan_asuhan'] ?>"><?= $row['nm_jabatan_asuhan'] ?></option>
                                 <?php endforeach ?>
                             </select>
                             <div class="invalid-feedback">Kolom harus di pilih !</div>
@@ -159,19 +160,19 @@ include_once '../../layout/footer.php';
 <?php
 if (isset($_POST['submit'])) {
     $id_gadik = $_POST['id_gadik'];
+    $id_mapel = $_POST['id_mapel'];
     $id_asuhan = $_POST['id_asuhan'];
-    $id_jabatan_asuhan = $_POST['id_jabatan_asuhan'];
 
-    $tambah = $con->query("INSERT INTO pengasuh VALUES (
+    $tambah = $con->query("INSERT INTO gadik_mapel VALUES (
         default, 
         '$id_gadik', 
-        '$id_asuhan',
-        '$id_jabatan_asuhan'
+        '$id_mapel',
+        '$id_asuhan'
     )");
 
     if ($tambah) {
         $_SESSION['pesan'] = "Data Berhasil di Simpan";
-        echo "<meta http-equiv='refresh' content='0; url=index'>";
+        echo "<meta http-equiv='refresh' content='0; url=data?ta=$id_asuhan'>";
     } else {
         echo "Data anda gagal disimpan. Ulangi sekali lagi";
         echo "<meta http-equiv='refresh' content='0; url=tambah'>";
