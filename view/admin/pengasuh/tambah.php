@@ -2,6 +2,7 @@
 require '../../../app/config.php';
 $page = 'pengasuh';
 include_once '../../layout/topbar.php';
+$dt = $_GET['ta'];
 ?>
 
 <div class="page-content">
@@ -12,7 +13,7 @@ include_once '../../layout/topbar.php';
                 <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Tambah Data Pengasuh</h4>
 
                 <div class="page-title-right">
-                    <a href="index" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
+                    <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
                 </div>
             </div>
             <div class="card card-body border border-danger mb-5">
@@ -171,7 +172,7 @@ if (isset($_POST['submit'])) {
 
     if ($tambah) {
         $_SESSION['pesan'] = "Data Berhasil di Simpan";
-        echo "<meta http-equiv='refresh' content='0; url=index'>";
+        echo "<meta http-equiv='refresh' content='0; url=data?ta=$id_asuhan'>";
     } else {
         echo "Data anda gagal disimpan. Ulangi sekali lagi";
         echo "<meta http-equiv='refresh' content='0; url=tambah'>";

@@ -1,15 +1,14 @@
 <?php
 require '../../../app/config.php';
-$page = 'pengasuh';
+$page = 'kelas_siswa';
 include_once '../../layout/topbar.php';
 ?>
 
 <div class="page-content">
     <div class="row">
-
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Data Pengasuh</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="bi bi-building-check me-2"></i>Data Kelas Siswa</h4>
             </div>
             <div class="card card-body border border-danger">
                 <form action="data" method="GET">
@@ -32,7 +31,6 @@ include_once '../../layout/topbar.php';
     </div>
     <!-- row  -->
 </div>
-
 
 <?php include_once '../../layout/footer.php'; ?>
 <script src="<?= base_url() ?>/app/js/app.js"></script>

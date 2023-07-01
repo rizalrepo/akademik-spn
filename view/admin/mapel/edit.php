@@ -23,7 +23,7 @@ $row = $query->fetch_array();
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Kode</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="kd_mapel" value="<?= $row['kd_mapel'] ?>" readonly>
+                            <input type="text" class="form-control bg-light" name="kd_mapel" value="<?= $row['kd_mapel'] ?>" readonly>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ $kode = $huruf . sprintf("%05s", $urutan);
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Kode</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="kd_mapel" value="<?= $kode ?>" required>
+                            <input type="text" class="form-control bg-light" name="kd_mapel" value="<?= $kode ?>" readonly required>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
                         </div>
                     </div>

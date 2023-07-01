@@ -4,6 +4,7 @@ $page = 'pengasuh';
 include_once '../../layout/topbar.php';
 
 $id = $_GET['id'];
+$dt = $_GET['ta'];
 $query = $con->query("SELECT * FROM pengasuh a JOIN gadik b ON a.id_gadik = b.id_gadik JOIN pangkat c ON b.id_pangkat = c.id_pangkat JOIN jabatan d ON b.id_jabatan = d.id_jabatan JOIN asuhan f ON a.id_asuhan = f.id_asuhan WHERE a.id_pengasuh ='$id'");
 $row = $query->fetch_array();
 ?>
@@ -15,7 +16,7 @@ $row = $query->fetch_array();
                 <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Edit Data Pengasuh</h4>
 
                 <div class="page-title-right">
-                    <a href="index" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
+                    <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
                 </div>
             </div>
             <div class="card card-body border border-dark-danger">
@@ -180,7 +181,7 @@ if (isset($_POST['submit'])) {
 
     if ($update) {
         $_SESSION['pesan'] = "Data Berhasil di Update";
-        echo "<meta http-equiv='refresh' content='0; url=index'>";
+        echo "<meta http-equiv='refresh' content='0; url=data?ta=$id_asuhan'>";
     } else {
         echo "Data anda gagal diubah. Ulangi sekali lagi";
         echo "<meta http-equiv='refresh' content='0; url=edit?id=$id'>";
