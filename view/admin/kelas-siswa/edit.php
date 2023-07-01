@@ -139,13 +139,13 @@ include_once '../../layout/footer.php';
                 } else if (hasil.hasil == 'duplikat') {
                     Swal.fire({
                         title: 'Gagal !',
-                        text: 'Data siswa sudah Ada !',
+                        text: 'Data Siswa sudah Ada !',
                         icon: 'error'
                     });
                 } else if (hasil.hasil == 'duplikat_ta') {
                     Swal.fire({
                         title: 'Gagal !',
-                        html: 'Data siswa sudah Ada di <br><b>Tahun Asuhan ' + hasil.asuhan + '</b> !',
+                        html: 'Data Siswa sudah Ada di <br><b>Tahun Asuhan ' + hasil.asuhan + '</b> !',
                         icon: 'error'
                     });
                 }
