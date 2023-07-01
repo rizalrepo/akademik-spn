@@ -4,6 +4,7 @@ $page = 'gadik_mapel';
 include_once '../../layout/topbar.php';
 
 $dt = $_GET['ta'];
+$title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_array();
 ?>
 
 <div class="page-content">
@@ -11,7 +12,7 @@ $dt = $_GET['ta'];
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
 
                 <div class="page-title-right">
                     <a href="tambah?ta=<?= $dt ?>" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Tambah Data</a>

@@ -4,16 +4,17 @@ $page = 'pengasuh';
 include_once '../../layout/topbar.php';
 
 $id = $_GET['id'];
-$dt = $_GET['ta'];
 $query = $con->query("SELECT * FROM pengasuh a JOIN gadik b ON a.id_gadik = b.id_gadik JOIN pangkat c ON b.id_pangkat = c.id_pangkat JOIN jabatan d ON b.id_jabatan = d.id_jabatan JOIN asuhan f ON a.id_asuhan = f.id_asuhan WHERE a.id_pengasuh ='$id'");
 $row = $query->fetch_array();
+$dt = $_GET['ta'];
+$title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_array();
 ?>
 
 <div class="page-content">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Edit Data Pengasuh</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-house-user me-2"></i>Edit Data Pengasuh Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
 
                 <div class="page-title-right">
                     <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
@@ -53,17 +54,7 @@ $row = $query->fetch_array();
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
                         <div class="col-sm-10">
-                            <select name="id_asuhan" class="form-select select2" style="width: 100%;" required>
-                                <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
-                                <?php foreach ($data as $d) :
-                                    if ($d['id_asuhan'] == $row['id_asuhan']) { ?>
-                                        <option value="<?= $d['id_asuhan']; ?>" selected="<?= $d['id_asuhan']; ?>">Tahun <?= $d['tahun'] ?> <?= $d['gelombang'] ?></option>
-                                    <?php } else { ?>
-                                        <option value="<?= $d['id_asuhan'] ?>">Tahun <?= $d['tahun'] ?> <?= $d['gelombang'] ?></option>
-                                <?php }
-                                endforeach ?>
-                            </select>
-                            <div class="invalid-feedback">Kolom harus di pilih !</div>
+                            <input type="text" class="form-control bg-light" id="nm_jabatan" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -169,22 +160,20 @@ include_once '../../layout/footer.php';
 <?php
 if (isset($_POST['submit'])) {
     $id_gadik = $_POST['id_gadik'];
-    $id_asuhan = $_POST['id_asuhan'];
     $id_jabatan_asuhan = $_POST['id_jabatan_asuhan'];
 
     $update = $con->query("UPDATE pengasuh SET 
         id_gadik = '$id_gadik',
-        id_asuhan = '$id_asuhan',
         id_jabatan_asuhan = '$id_jabatan_asuhan'
         WHERE id_pengasuh = '$id'
     ");
 
     if ($update) {
         $_SESSION['pesan'] = "Data Berhasil di Update";
-        echo "<meta http-equiv='refresh' content='0; url=data?ta=$id_asuhan'>";
+        echo "<meta http-equiv='refresh' content='0; url=data?ta=$dt'>";
     } else {
         echo "Data anda gagal diubah. Ulangi sekali lagi";
-        echo "<meta http-equiv='refresh' content='0; url=edit?id=$id'>";
+        echo "<meta http-equiv='refresh' content='0; url=edit?id=$id&ta=$dt'>";
     }
 }
 ?>

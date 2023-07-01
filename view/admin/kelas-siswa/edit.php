@@ -4,16 +4,17 @@ $page = 'kelas_siswa';
 include_once '../../layout/topbar.php';
 
 $id = $_GET['id'];
-$dt = $_GET['ta'];
 $query = $con->query("SELECT * FROM kelas_siswa WHERE id_kelas_siswa ='$id'");
 $row = $query->fetch_array();
+$dt = $_GET['ta'];
+$title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_array();
 ?>
 
 <div class="page-content">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="bi bi-building-check me-2"></i>Edit Data Kelas Siswa</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="bi bi-building-check me-2"></i>Edit Data Kelas Siswa Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
 
                 <div class="page-title-right">
                     <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
@@ -21,6 +22,12 @@ $row = $query->fetch_array();
             </div>
             <div class="card card-body border border-dark-danger">
                 <form class="form-horizontal needs-validation" novalidate method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control bg-light" id="nm_jabatan" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
+                        </div>
+                    </div>
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Ruang Kelas</label>
                         <div class="col-sm-10">
@@ -31,22 +38,6 @@ $row = $query->fetch_array();
                                         <option value="<?= $d['id_kelas']; ?>" selected="<?= $d['id_kelas']; ?>"><?= $d['nm_kelas'] ?></option>
                                     <?php } else { ?>
                                         <option value="<?= $d['id_kelas'] ?>"><?= $d['nm_kelas'] ?></option>
-                                <?php }
-                                endforeach ?>
-                            </select>
-                            <div class="invalid-feedback">Kolom harus di pilih !</div>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
-                        <div class="col-sm-10">
-                            <select name="id_asuhan" class="form-select select2" style="width: 100%;" required>
-                                <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
-                                <?php foreach ($data as $d) :
-                                    if ($d['id_asuhan'] == $row['id_asuhan']) { ?>
-                                        <option value="<?= $d['id_asuhan']; ?>" selected="<?= $d['id_asuhan']; ?>">Tahun <?= $d['tahun'] ?> <?= $d['gelombang'] ?></option>
-                                    <?php } else { ?>
-                                        <option value="<?= $d['id_asuhan'] ?>">Tahun <?= $d['tahun'] ?> <?= $d['gelombang'] ?></option>
                                 <?php }
                                 endforeach ?>
                             </select>
@@ -83,7 +74,7 @@ $row = $query->fetch_array();
                 <form class="form-horizontal needs-validation" novalidate id="form-tambah" method="POST" enctype="multipart/form-data" action="detail/simpan.php">
                     <div class="card-body">
                         <input type="hidden" name="kode" value="<?= $row['kode'] ?>">
-                        <input type="text" id="asuhanVal" name="asuhanVal" hidden>
+                        <input type="hidden" value="<?= $dt ?>" name="asuhanVal">
                         <div class="form-group row mb-3">
                             <label class="col-sm-2 col-form-label">Nama Siswa</label>
                             <div class="col-sm-10">
@@ -115,20 +106,6 @@ include_once '../../layout/footer.php';
 ?>
 <script src="<?= base_url() ?>/app/js/app.js"></script>
 <script>
-    $(document).on('change', '#id_asuhan', function() {
-        $('#asuhanVal').val($(this).val());
-    });
-
-    if ($('#id_asuhan').val() == '') {
-        $('#btn-tambah').hide();
-    } else {
-        $('#btn-tambah').show();
-    }
-
-    $("#id_asuhan").change(function() {
-        $('#btn-tambah').show();
-    });
-
     muncul();
     var data = "detail/tampil.php";
 
@@ -194,20 +171,31 @@ include_once '../../layout/footer.php';
 <?php
 if (isset($_POST['submit'])) {
     $id_kelas = $_POST['id_kelas'];
-    $id_asuhan = $_POST['id_asuhan'];
 
-    $update = $con->query("UPDATE kelas_siswa SET 
-        id_kelas = '$id_kelas',
-        id_asuhan = '$id_asuhan'
-        WHERE id_kelas_siswa = '$id'
-    ");
+    $cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM kelas_siswa WHERE id_kelas = '$id_kelas' AND id_asuhan = '$dt'"));
 
-    if ($update) {
-        $_SESSION['pesan'] = "Data Berhasil di Update";
-        echo "<meta http-equiv='refresh' content='0; url=data?ta=$id_asuhan'>";
+    if ($id_kelas != $row['id_kelas'] && $cek > 0) {
+        echo "
+        <script type='text/javascript'>
+            Swal.fire({
+                title: 'Gagal Menyimpan !',
+                text:  'Data Kelas sudah ada !',
+                icon: 'error'
+            });     
+        </script>";
     } else {
-        echo "Data anda gagal diubah. Ulangi sekali lagi";
-        echo "<meta http-equiv='refresh' content='0; url=edit?id=$id'>";
+        $update = $con->query("UPDATE kelas_siswa SET 
+            id_kelas = '$id_kelas'
+            WHERE id_kelas_siswa = '$id'
+        ");
+
+        if ($update) {
+            $_SESSION['pesan'] = "Data Berhasil di Update";
+            echo "<meta http-equiv='refresh' content='0; url=data?ta=$dt'>";
+        } else {
+            echo "Data anda gagal diubah. Ulangi sekali lagi";
+            echo "<meta http-equiv='refresh' content='0; url=edit?id=$id&ta=$dt'>";
+        }
     }
 }
 ?>
