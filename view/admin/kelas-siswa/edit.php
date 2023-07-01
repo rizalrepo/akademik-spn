@@ -8,6 +8,8 @@ $query = $con->query("SELECT * FROM kelas_siswa WHERE id_kelas_siswa ='$id'");
 $row = $query->fetch_array();
 $dt = $_GET['ta'];
 $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_array();
+
+$old = $row['id_kelas'];
 ?>
 
 <div class="page-content">
@@ -172,16 +174,20 @@ include_once '../../layout/footer.php';
 if (isset($_POST['submit'])) {
     $id_kelas = $_POST['id_kelas'];
 
-    $cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM kelas_siswa WHERE id_kelas = '$id_kelas' AND id_asuhan = '$dt'"));
+    $cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM kelas_siswa WHERE id_asuhan = '$dt'"));
 
-    if ($id_kelas != $row['id_kelas'] && $cek > 0) {
+    if ($id_kelas !== $old && $cek > 0) {
         echo "
         <script type='text/javascript'>
             Swal.fire({
                 title: 'Gagal Menyimpan !',
                 text:  'Data Kelas sudah ada !',
-                icon: 'error'
-            });     
+                icon: 'error',
+                showConfirmButton: true
+            });  
+            window.setTimeout(function(){ 
+                window.location.replace('edit?id=$id&ta=$dt');
+            }, 2000);   
         </script>";
     } else {
         $update = $con->query("UPDATE kelas_siswa SET 
