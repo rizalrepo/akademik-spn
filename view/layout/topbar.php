@@ -150,9 +150,9 @@ if (!isset($_SESSION['login'])) {
                                                     <a href="<?= base_url() ?>/view/admin/kelas-siswa/" class="dropdown-item <?php if ($page == 'kelas_siswa') {
                                                                                                                                     echo 'active';
                                                                                                                                 } ?>"><i class="bi bi-building-check me-2"></i>Data Kelas Siswa</a>
-                                                    <a href="<?= base_url() ?>/view/admin/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
-                                                                                                                                echo 'active';
-                                                                                                                            } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a>
+                                                    <!-- <a href="<?= base_url() ?>/view/admin/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
+                                                                                                                                    echo 'active';
+                                                                                                                                } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a> -->
                                                 </div>
                                             </li>
                                         <?php } ?>
