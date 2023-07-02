@@ -120,6 +120,10 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     /* --bs-border-color-translucent: #1e2938; */
 }
 
+.topnav .navbar-nav .nav-item .nav-link {
+    padding: 0 10px !important;
+}
+
 [data-bs-theme=light] #example1 tbody tr td, [data-bs-theme=light] #tbl tbody tr td{
     color: black !important;
 }
