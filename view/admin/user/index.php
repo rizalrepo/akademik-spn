@@ -61,7 +61,7 @@ include_once '../../layout/topbar.php';
                                         }
                                         ?>
                                     </td>
-                                    <td align="center" width="18%">
+                                    <td align="center" width="14%">
                                         <a href="edit?id=<?= $row[0] ?>" class="btn text-white btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i> Edit</a>
                                         <?php if ($row['level'] == 1 || $row['level'] == 2) { ?>
                                             <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>

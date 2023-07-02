@@ -113,7 +113,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
                                     <td align="center"><?= $row['nrp_nip'] ?></td>
                                     <td align="center"><?= $row['nm_pangkat'] ?></td>
                                     <td align="center"><?= $row['nm_jabatan'] ?></td>
-                                    <td align="center" width="18%">
+                                    <td align="center" width="14%">
                                         <button class="btn btn-xs btn-success" id="select" data-nm_gadik="<?= $row['nm_gadik'] ?>" data-id_gadik="<?= $row['id_gadik'] ?>" data-nrp_nip="<?= $row['nrp_nip']  ?>" data-nm_pangkat="<?= $row['nm_pangkat']  ?>" data-nm_jabatan="<?= $row['nm_jabatan'] ?>">
                                             <i class="fas fa-check-circle"></i> Pilih
                                         </button>
