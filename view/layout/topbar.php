@@ -47,18 +47,12 @@ if (!isset($_SESSION['login'])) {
                         <!-- LOGO -->
                         <div class="navbar-brand-box p-0">
                             <span class="logo logo-dark">
-                                <span class="logo-sm">
-                                    <img src="<?= base_url() ?>/assets/images/logo.png" alt="" height="30">
-                                </span>
                                 <span class="logo-lg">
                                     <img src="<?= base_url() ?>/assets/images/logo.png" alt="" height="52">
                                 </span>
                             </span>
 
                             <span class="logo logo-light">
-                                <span class="logo-sm">
-                                    <img src="<?= base_url() ?>/assets/images/logo.png" alt="" height="30">
-                                </span>
                                 <span class="logo-lg">
                                     <img src="<?= base_url() ?>/assets/images/logo.png" alt="" height="52">
                                 </span>

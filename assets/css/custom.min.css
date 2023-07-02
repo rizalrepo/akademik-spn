@@ -121,7 +121,14 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .topnav .navbar-nav .nav-item .nav-link {
-    padding: 0 10px !important;
+    padding: 0 1px 0 15px !important;
+}
+
+@media only screen and (max-width: 991.98px) {
+    .topnav .navbar-nav .nav-item .nav-link {
+        padding: 0.75rem 1.1rem !important;
+        line-height: inherit !important;
+    }
 }
 
 [data-bs-theme=light] #example1 tbody tr td, [data-bs-theme=light] #tbl tbody tr td{
