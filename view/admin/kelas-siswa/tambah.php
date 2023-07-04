@@ -31,7 +31,7 @@ $kode = $huruf . sprintf("%05s", $urutan);
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control bg-light" id="nm_jabatan" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
+                            <input type="text" class="form-control bg-light" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row mb-3">

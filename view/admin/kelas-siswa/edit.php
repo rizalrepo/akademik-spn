@@ -27,7 +27,7 @@ $old = $row['id_kelas'];
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Tahun Asuhan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control bg-light" id="nm_jabatan" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
+                            <input type="text" class="form-control bg-light" value="Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -174,7 +174,7 @@ include_once '../../layout/footer.php';
 if (isset($_POST['submit'])) {
     $id_kelas = $_POST['id_kelas'];
 
-    $cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM kelas_siswa WHERE id_asuhan = '$dt'"));
+    $cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM kelas_siswa WHERE id_asuhan = '$dt' AND id_kelas = '$id_kelas' "));
 
     if ($id_kelas !== $old && $cek > 0) {
         echo "
