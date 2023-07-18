@@ -81,7 +81,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
                         <input type="hidden" name="id_gadik_mapel" value="<?= $id ?>">
                         <input type="hidden" name="id_asuhan" value="<?= $dt ?>">
                         <div class="form-group row mb-3">
-                            <label class="col-sm-2 col-form-label">Nama Siswa</label>
+                            <label class="col-sm-2 col-form-label">Kelas Siswa</label>
                             <div class="col-sm-10">
                                 <select name="id_kelas_siswa" id="id_kelas_siswa" class="form-select" style="width: 100%;" required>
                                     <option value="">-- Pilih --</option>

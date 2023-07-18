@@ -10,9 +10,7 @@ $hari              = $_POST['hari'];
 $jam_mulai         = $_POST['jam_mulai'];
 $jam_selesai       = $_POST['jam_selesai'];
 
-$dt = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$id_asuhan' ")->fetch_array();
-
-$cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM jadwal WHERE id_gadik_mapel = '$id_gadik_mapel' AND id_asuhan = '$id_asuhan' AND id_kelas_siswa = $id_kelas_siswa AND hari = '$hari' "));
+$cek = mysqli_num_rows(mysqli_query($con, "SELECT * FROM jadwal WHERE id_gadik_mapel = '$id_gadik_mapel' AND id_asuhan = '$id_asuhan' AND id_kelas_siswa = '$id_kelas_siswa' AND hari = '$hari' "));
 
 if ($cek > 0) {
     $data['hasil'] = 'duplikat';
