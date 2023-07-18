@@ -84,7 +84,7 @@ $old = $row['id_kelas'];
                                     <option value="">-- Pilih --</option>
                                     <?php $data = $con->query("SELECT * FROM siswa ORDER BY id_siswa DESC"); ?>
                                     <?php foreach ($data as $row) : ?>
-                                        <option value="<?= $row['id_siswa'] ?>">NRP. <?= $row['nrp'] ?> | <?= $row['nm_siswa'] ?></option>
+                                        <option value="<?= $row['id_siswa'] ?>">NOSIS. <?= $row['nrp'] ?> | <?= $row['nm_siswa'] ?></option>
                                     <?php endforeach ?>
                                 </select>
                                 <div class="invalid-feedback">Kolom harus di pilih !</div>

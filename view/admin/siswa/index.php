@@ -34,7 +34,7 @@ include_once '../../layout/topbar.php';
                             <tr>
                                 <th>No</th>
                                 <th>Nama Lengkap</th>
-                                <th>NRP</th>
+                                <th>NOSIS</th>
                                 <th>Kontak Wali</th>
                                 <th>Daftar</th>
                                 <th>Aksi</th>

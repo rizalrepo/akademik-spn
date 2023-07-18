@@ -34,7 +34,7 @@ $jk2 = [
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">NRP</label>
+                        <label class="col-sm-2 col-form-label">NOSIS</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="nrp" value="<?= $row['nrp'] ?>" required>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>

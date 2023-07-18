@@ -3,7 +3,7 @@
         <tr align="center">
             <th>No</th>
             <th>Nama Siswa</th>
-            <th>NRP</th>
+            <th>NOSIS</th>
             <th>Aksi</th>
         </tr>
     </thead>
