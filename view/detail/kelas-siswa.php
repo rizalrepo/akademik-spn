@@ -42,7 +42,7 @@ if (mysqli_connect_errno()) {
                                 <tr align="center">
                                     <th>No</th>
                                     <th>Nama Siswa</th>
-                                    <th>NRP</th>
+                                    <th>NOSIS</th>
                                     <th>Wali</th>
                                 </tr>
                             </thead>

@@ -1,11 +1,3 @@
-<?php
-$izin = [
-    '' => '-- Pilih --',
-    'Izin' => 'Izin',
-    'Sakit' => 'Sakit',
-];
-?>
-
 <div class="modal fade" id="lapGadik" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -54,42 +46,32 @@ $izin = [
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lapAbsensi" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="lapPengasuh" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Rekapitulasi Absensi</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Pengasuh</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/rekap-absensi') ?>">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/pengasuh') ?>">
                     <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Asuhan</label>
+                                <select name="asuhan" class="form-select" id="selectAsuhan" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control" required name="tahun" value="<?= date('Y') ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -100,52 +82,44 @@ $izin = [
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lapAbsensiPersonil" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="lapGadikMapel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Rekapitulasi Absensi</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Gadik Mapel</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/absensi') ?>">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/gadik-mapel') ?>">
                     <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label class="col-form-label fw-semibold">Personil</label>
-                            <select name="personil" class="form-select" id="selectPersonil" style="width: 100%;" required>
-                                <option value="">-- Pilih --</option>
-                                <?php $data = $con->query("SELECT * FROM personil ORDER BY id_personil ASC"); ?>
-                                <?php foreach ($data as $row) : ?>
-                                    <option value="<?= $row['id_personil'] ?>">NRP/NIP. <?= $row['nrp_nip'] . ' | ' . $row['nm_personil'] ?></option>
-                                <?php endforeach ?>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Mata Pelajaran</label>
+                                <select name="mapel" class="form-select" id="selectMapel" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM mapel ORDER BY id_mapel ASC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_mapel'] ?>"><?= $row['kd_mapel'] . ' - ' . $row['nm_mapel'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Asuhan</label>
+                                <select name="asuhan" class="form-select" id="selectAsuhanMapel" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control" required name="tahun" value="<?= date('Y') ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -156,46 +130,44 @@ $izin = [
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lapIzin" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="lapJadwal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Izin Personil</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Jadwal Mengajar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/izin') ?>">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/jadwal') ?>">
                     <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select bln-izin">
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Gadik Mapel</label>
+                                <select name="id_gadik_mapel" class="form-select" id="selectGadikJadwal" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM gadik_mapel a LEFT JOIN gadik b ON a.id_gadik = b.id_gadik GROUP BY a.id_gadik ORDER BY a.id_gadik_mapel ASC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_gadik_mapel'] ?>">NRP/NIP <?= $row['nrp_nip'] . ' | ' . $row['nm_gadik'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control thn-izin" name="tahun">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Asuhan</label>
+                                <select name="id_asuhan" class="form-select" id="selectAsuhanJadwal" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <label class="col-form-label fw-semibold">Jenis Izin</label>
-                            <?= form_dropdown('izin', $izin, '', 'class="form-select"') ?>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -206,42 +178,32 @@ $izin = [
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lapCuti" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="lapSiswa" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Cuti Personil</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/cuti') ?>">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/siswa') ?>">
                     <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select bln-cuti">
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Masuk</label>
+                                <select name="tahun" class="form-select" id="selectTahun" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT YEAR(tgl_daftar) as tahun FROM siswa GROUP BY tahun ORDER BY tahun DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['tahun'] ?>"><?= $row['tahun'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control thn-cuti" name="tahun">
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -252,146 +214,44 @@ $izin = [
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lapTugas" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="lapKelas" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Perintah Tugas</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Jadwal Mengajar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/tugas') ?>">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/kelas-siswa') ?>">
                     <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select bln-tugas">
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Kelas</label>
+                                <select name="id_kelas_siswa" class="form-select" id="selectKelas" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM kelas_siswa a LEFT JOIN kelas b ON a.id_kelas = b.id_kelas GROUP BY a.id_kelas ORDER BY a.id_kelas_siswa ASC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_kelas_siswa'] ?>"> <?= $row['nm_kelas'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control thn-tugas" name="tahun">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Asuhan</label>
+                                <select name="id_asuhan" class="form-select" id="selectAsuhanKelas" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="lapMutasi" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Mutasi Jabatan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/mutasi') ?>">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select bln-mutasi">
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control thn-mutasi" name="tahun">
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="lapKegiatan" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Kegiatan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal needs-validation" novalidate method="GET" target="_blank" action="<?= base_url('view/laporan/kegiatan') ?>">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label class="col-form-label fw-semibold">Bulan</label>
-                            <select name="bulan" class="form-select bln-kegiatan">
-                                <option value="">-- Pilih --</option>
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="col-form-label fw-semibold">Tahun</label>
-                            <input type="number" class="form-control thn-kegiatan" name="tahun">
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="form-group">
-                            <label class="col-form-label fw-semibold">Berdasarkan Jenis Kegiatan</label>
-                            <select name="jenis" class="form-select" id="selectJenis" style="width: 100%;">
-                                <option value="">-- Pilih --</option>
-                                <?php $data = $con->query("SELECT * FROM jenis_kegiatan ORDER BY id_jenis_kegiatan ASC"); ?>
-                                <?php foreach ($data as $row) : ?>
-                                    <option value="<?= $row['id_jenis_kegiatan'] ?>"><?= $row['nm_jenis_kegiatan'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -411,6 +271,30 @@ $izin = [
         });
         $('#selectJabatan').select2({
             dropdownParent: $('#lapGadik')
+        });
+        $('#selectAsuhan').select2({
+            dropdownParent: $('#lapPengasuh')
+        });
+        $('#selectAsuhanMapel').select2({
+            dropdownParent: $('#lapGadikMapel')
+        });
+        $('#selectMapel').select2({
+            dropdownParent: $('#lapGadikMapel')
+        });
+        $('#selectGadikJadwal').select2({
+            dropdownParent: $('#lapJadwal')
+        });
+        $('#selectAsuhanJadwal').select2({
+            dropdownParent: $('#lapJadwal')
+        });
+        $('#selectTahun').select2({
+            dropdownParent: $('#lapSiswa')
+        });
+        $('#selectKelas').select2({
+            dropdownParent: $('#lapKelas')
+        });
+        $('#selectAsuhanKelas').select2({
+            dropdownParent: $('#lapKelas')
         });
 
         // $('#selectPersonil').select2({

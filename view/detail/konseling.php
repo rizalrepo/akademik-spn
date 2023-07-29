@@ -21,7 +21,7 @@ if (mysqli_connect_errno()) {
                     <div class="form-group">
                         <div class="card-body" style="text-align: left;">
                             <dl class="row">
-                                <dt class="col-sm-3">Tahun Asuahan</dt>
+                                <dt class="col-sm-3">Tahun Asuhan</dt>
                                 <dd class="col-sm-9">: Tahun <?= $d['tahun'] . ' ' . $d['gelombang'] ?></dd>
                                 <dt class="col-sm-3">Siswa</dt>
                                 <dd class="col-sm-9">: NOSIS <?= $d['nrp'] ?> | <?= $d['nm_siswa'] ?></dd>
