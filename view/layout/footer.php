@@ -50,6 +50,7 @@
 
 </div>
 
+<?php include 'modal.php'; ?>
 <!-- /Right-bar -->
 
 <script src="<?= base_url() ?>/assets/libs/jquery/jquery.min.js"></script>

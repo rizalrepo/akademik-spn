@@ -4,9 +4,11 @@ $page = 'dashboard';
 include_once '../layout/topbar.php';
 
 $a = $con->query("SELECT COUNT(*) AS total FROM gadik")->fetch_array();
-
-// $b1 = $con->query("SELECT COUNT(*) AS total FROM penduduk a LEFT JOIN user b ON a.id_penduduk = b.id_penduduk WHERE b.active != 1")->fetch_array();
-// $b2 = $con->query("SELECT COUNT(*) AS total FROM penduduk a LEFT JOIN user b ON a.id_penduduk = b.id_penduduk WHERE b.active = 1")->fetch_array();
+$b = $con->query("SELECT COUNT(*) AS total FROM pengasuh")->fetch_array();
+$c = $con->query("SELECT COUNT(*) AS total FROM gadik_mapel")->fetch_array();
+$d = $con->query("SELECT COUNT(*) AS total FROM jadwal")->fetch_array();
+$e = $con->query("SELECT COUNT(*) AS total FROM siswa")->fetch_array();
+$f = $con->query("SELECT COUNT(*) AS total FROM konseling")->fetch_array();
 ?>
 <div class="page-content">
 
@@ -38,6 +40,101 @@ $a = $con->query("SELECT COUNT(*) AS total FROM gadik")->fetch_array();
                         <div class="flex-1 overflow-hidden">
                             <h5 class="font-size-16 mb-1">Data Gadik</h5>
                             <p class="text-truncate mb-0"><?= $a['total'] ?> Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start my-2">
+                        <div class="me-3 align-self-center">
+                            <div class="avatar-sm font-size-20">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
+                                    <i class="fas fa-house-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Data Pengasuh</h5>
+                            <p class="text-truncate mb-0"><?= $b['total'] ?> Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start my-2">
+                        <div class="me-3 align-self-center">
+                            <div class="avatar-sm font-size-20">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
+                                    <i class="fas fa-address-book"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Data Gadik Mapel</h5>
+                            <p class="text-truncate mb-0"><?= $c['total'] ?> Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start my-2">
+                        <div class="me-3 align-self-center">
+                            <div class="avatar-sm font-size-20">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
+                                    <i class="fas fa-user-clock"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Data Jadwal Mengajar Gadik</h5>
+                            <p class="text-truncate mb-0"><?= $d['total'] ?> Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start my-2">
+                        <div class="me-3 align-self-center">
+                            <div class="avatar-sm font-size-20">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Data Siswa</h5>
+                            <p class="text-truncate mb-0"><?= $e['total'] ?> Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start my-2">
+                        <div class="me-3 align-self-center">
+                            <div class="avatar-sm font-size-20">
+                                <span class="avatar-title bg-soft-danger text-danger rounded">
+                                    <i class="fas fa-comments"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Data Konseling</h5>
+                            <p class="text-truncate mb-0"><?= $f['total'] ?> Data</p>
                         </div>
                     </div>
                 </div>

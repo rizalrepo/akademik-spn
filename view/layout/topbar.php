@@ -152,6 +152,15 @@ if (!isset($_SESSION['login'])) {
                                                                                                                             } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a>
                                                 </div>
                                             </li>
+
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-file-alt me-2"></i>Laporan Cetak <div class="arrow-down"></div>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-siswa">
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik</a>
+                                                </div>
+                                            </li>
                                         <?php } else if ($_SESSION['level'] == 2) { ?>
 
                                         <?php } else { ?>
