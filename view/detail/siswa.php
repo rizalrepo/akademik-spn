@@ -26,7 +26,7 @@ if (mysqli_connect_errno()) {
                             <dl class="row">
                                 <dt class="col-sm-3">Nama Lengkap</dt>
                                 <dd class="col-sm-9">: <?= $d['nm_siswa'] ?></dd>
-                                <dt class="col-sm-3">NRP</dt>
+                                <dt class="col-sm-3">NOSIS</dt>
                                 <dd class="col-sm-9">: <?= $d['nrp'] ?></dd>
                                 <dt class="col-sm-3">Asal Sekolah</dt>
                                 <dd class="col-sm-9">: <?= $d['sekolah'] ?></dd>

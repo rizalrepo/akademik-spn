@@ -149,6 +149,49 @@ if (!isset($_SESSION['login'])) {
                                                                                                                                 } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a> -->
                                                 </div>
                                             </li>
+                                        <?php } else if ($_SESSION['level'] == 2) { ?>
+
+                                        <?php } else { ?>
+                                            <li class="nav-item dropdown <?php if ($page == 'dashboard') {
+                                                                                echo 'active';
+                                                                            } ?>">
+                                                <a class="nav-link" href="<?= base_url() ?>/view/gadik/">
+                                                    <i class="mdi mdi-airplay me-2"></i>Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="nav-item dropdown <?php if ($page == 'gadik_mapel' || $page == 'pengasuh' || $page == 'jadwal') {
+                                                                                echo 'active';
+                                                                            } ?>">
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-user-graduate me-2"></i>Menu Gadik <div class="arrow-down"></div>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-gadik">
+                                                    <a href="<?= base_url() ?>/view/gadik/pengasuh/" class="dropdown-item <?php if ($page == 'pengasuh') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="fas fa-house-user me-2"></i>Data Pengasuh</a>
+                                                    <a href="<?= base_url() ?>/view/gadik/gadik-mapel/" class="dropdown-item <?php if ($page == 'gadik_mapel') {
+                                                                                                                                    echo 'active';
+                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</a>
+                                                    <a href="<?= base_url() ?>/view/gadik/jadwal/" class="dropdown-item <?php if ($page == 'jadwal') {
+                                                                                                                            echo 'active';
+                                                                                                                        } ?>"><i class="fas fa-user-clock me-2"></i>Data Jadwal Mengajar</a>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown <?php if ($page == 'absensi' || $page == 'konseling') {
+                                                                                echo 'active';
+                                                                            } ?>">
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-graduation-cap me-2"></i>Menu Siswa <div class="arrow-down"></div>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-siswa">
+                                                    <a href="<?= base_url() ?>/view/gadik/konseling/" class="dropdown-item <?php if ($page == 'konseling') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="fas fa-comments me-2"></i>Data Konseling</a>
+                                                    <a href="<?= base_url() ?>/view/gadik/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi Siswa</a>
+                                                </div>
+                                            </li>
                                         <?php } ?>
                                     </ul>
                                 </div>
