@@ -262,6 +262,112 @@
     <!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade" id="lapKonseling" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Konseling</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" target="_blank" action="<?= base_url('view/laporan/konseling') ?>">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Berdasarkan Tahun Asuhan</label>
+                                <select name="asuhan" class="form-select" id="selectAsuhanKonseling" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="lapAbsensi" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Absensi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" class="form-horizontal needs-validation" novalidate target="_blank" action="<?= base_url('view/laporan/absensi') ?>">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Pilih Tahun Asuhan</label>
+                                <select name="asuhan" class="form-select" id="selectAsuhanAbsensi" style="width: 100%;" required>
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM asuhan ORDER BY id_asuhan DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_asuhan'] ?>">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label class="col-form-label fw-semibold">Pilih Kelas</label>
+                                <select name="kelas_siswa" class="form-select" id="selectKelasAbsensi" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM kelas_siswa a LEFT JOIN kelas b ON a.id_kelas = b.id_kelas GROUP BY a.id_kelas ORDER BY a.id_kelas_siswa ASC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_kelas_siswa'] ?>"> <?= $row['nm_kelas'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="col-form-label fw-semibold">Bulan</label>
+                            <select name="bulan" class="form-select" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="01">Januari</option>
+                                <option value="02">Februari</option>
+                                <option value="03">Maret</option>
+                                <option value="04">April</option>
+                                <option value="05">Mei</option>
+                                <option value="06">Juni</option>
+                                <option value="07">Juli</option>
+                                <option value="08">Agustus</option>
+                                <option value="09">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label fw-semibold">Tahun</label>
+                            <input type="number" class="form-control" required name="tahun" value="<?= date('Y') ?>">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-grid mt-3">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-print me-1"></i> Cetak</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <script src="<?= base_url() ?>/assets/libs/jquery/jquery.min.js"></script>
 
 <script>
@@ -296,49 +402,14 @@
         $('#selectAsuhanKelas').select2({
             dropdownParent: $('#lapKelas')
         });
-
-        // $('#selectPersonil').select2({
-        //     dropdownParent: $('#lapAbsensiPersonil')
-        // });
-
-        // $('#selectJenis').select2({
-        //     dropdownParent: $('#lapKegiatan')
-        // });
-
-        // $(".bln-izin").change(function() {
-        //     if ($(".bln-izin option:selected").val() != '') {
-        //         $('.thn-izin').prop('required', true);
-        //     } else {
-        //         $('.thn-izin').removeAttr('required');
-        //     }
-        // });
-        // $(".bln-cuti").change(function() {
-        //     if ($(".bln-cuti option:selected").val() != '') {
-        //         $('.thn-cuti').prop('required', true);
-        //     } else {
-        //         $('.thn-cuti').removeAttr('required');
-        //     }
-        // });
-        // $(".bln-tugas").change(function() {
-        //     if ($(".bln-tugas option:selected").val() != '') {
-        //         $('.thn-tugas').prop('required', true);
-        //     } else {
-        //         $('.thn-tugas').removeAttr('required');
-        //     }
-        // });
-        // $(".bln-mutasi").change(function() {
-        //     if ($(".bln-mutasi option:selected").val() != '') {
-        //         $('.thn-mutasi').prop('required', true);
-        //     } else {
-        //         $('.thn-mutasi').removeAttr('required');
-        //     }
-        // });
-        // $(".bln-kegiatan").change(function() {
-        //     if ($(".bln-kegiatan option:selected").val() != '') {
-        //         $('.thn-kegiatan').prop('required', true);
-        //     } else {
-        //         $('.thn-kegiatan').removeAttr('required');
-        //     }
-        // });
+        $('#selectAsuhanKonseling').select2({
+            dropdownParent: $('#lapKonseling')
+        });
+        $('#selectAsuhanAbsensi').select2({
+            dropdownParent: $('#lapAbsensi')
+        });
+        $('#selectKelasAbsensi').select2({
+            dropdownParent: $('#lapAbsensi')
+        });
     });
 </script>

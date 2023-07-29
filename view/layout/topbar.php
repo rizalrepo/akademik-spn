@@ -169,7 +169,28 @@ if (!isset($_SESSION['login'])) {
                                                 </div>
                                             </li>
                                         <?php } else if ($_SESSION['level'] == 2) { ?>
-
+                                            <li class="nav-item dropdown <?php if ($page == 'dashboard') {
+                                                                                echo 'active';
+                                                                            } ?>">
+                                                <a class="nav-link" href="<?= base_url() ?>/view/admin/">
+                                                    <i class="mdi mdi-airplay me-2"></i>Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="nav-item dropdown dropLaporan">
+                                                <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
+                                                    <i class="fas fa-file-alt me-2"></i>Laporan Cetak <div class="arrow-down"></div>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="topnav-laporan">
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapPengasuh" class="dropdown-item"><i class="far fa-circle me-2"></i>Pengasuh</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadikMapel" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik Mapel</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapJadwal" class="dropdown-item"><i class="far fa-circle me-2"></i>Jadwal Mengajar Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapSiswa" class="dropdown-item"><i class="far fa-circle me-2"></i>Siswa</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapKelas" class="dropdown-item"><i class="far fa-circle me-2"></i>Kelas Siswa</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapKonseling" class="dropdown-item"><i class="far fa-circle me-2"></i>Konseling</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapAbsensi" class="dropdown-item"><i class="far fa-circle me-2"></i>Absensi</a>
+                                                </div>
+                                            </li>
                                         <?php } else { ?>
                                             <li class="nav-item dropdown <?php if ($page == 'dashboard') {
                                                                                 echo 'active';
