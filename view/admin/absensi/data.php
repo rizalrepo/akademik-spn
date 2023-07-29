@@ -5,9 +5,6 @@ include_once '../../layout/topbar.php';
 
 $dt = $_GET['ta'];
 $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_array();
-
-$log = $con->query("SELECT * FROM user WHERE id_user = '$_SESSION[id_user]' ")->fetch_array();
-$user = $log['id_gadik'];
 ?>
 
 <div class="page-content">
@@ -64,7 +61,7 @@ $user = $log['id_gadik'];
                         <tbody>
                             <?php
                             $no = 1;
-                            $data = $con->query("SELECT * FROM jadwal a LEFT JOIN kelas_siswa b ON a.id_kelas_siswa = b.id_kelas_siswa LEFT JOIN kelas c ON b.id_kelas = c.id_kelas LEFT JOIN gadik_mapel d ON a.id_gadik_mapel = d.id_gadik_mapel LEFT JOIN mapel e ON d.id_mapel = e.id_mapel WHERE d.id_gadik = '$user' AND a.id_asuhan = '$dt' ORDER BY a.id_jadwal ASC");
+                            $data = $con->query("SELECT * FROM jadwal a LEFT JOIN kelas_siswa b ON a.id_kelas_siswa = b.id_kelas_siswa LEFT JOIN kelas c ON b.id_kelas = c.id_kelas LEFT JOIN gadik_mapel d ON a.id_gadik_mapel = d.id_gadik_mapel LEFT JOIN mapel e ON d.id_mapel = e.id_mapel WHERE a.id_asuhan = '$dt' ORDER BY a.id_jadwal ASC");
                             while ($row = $data->fetch_array()) {
                             ?>
                                 <tr>
@@ -77,7 +74,6 @@ $user = $log['id_gadik'];
                                     </td>
                                     <td align="center" width="14%">
                                         <div class="d-grid px-1">
-                                            <a href="absensi?id=<?= $row[0] ?>&ta=<?= $dt ?>" class="btn btn-primary btn-xs text-white"><i class="bi bi-calendar-check me-1"></i>Tambah Absensi</a>
                                             <span data-bs-target="#id<?= $row[0]; ?>" data-bs-toggle="modal" class="btn btn-success btn-xs mt-1"><i class="bi bi-list-check me-1"></i>Detail Absensi</span>
                                         </div>
                                         <?php include('../../detail/absensi.php'); ?>

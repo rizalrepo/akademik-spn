@@ -1,6 +1,6 @@
 <?php
 require '../../../app/config.php';
-$page = 'gadik_mapel';
+$page = 'konseling';
 include_once '../../layout/topbar.php';
 
 $log = $con->query("SELECT * FROM user WHERE id_user = '$_SESSION[id_user]' ")->fetch_array();

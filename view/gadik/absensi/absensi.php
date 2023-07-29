@@ -1,6 +1,6 @@
 <?php
 require '../../../app/config.php';
-$page = 'jadwal';
+$page = 'absensi';
 include_once '../../layout/topbar.php';
 
 $id = $_GET['id'];
@@ -42,67 +42,62 @@ $today = date('Y-m-d');
                             <input type="text" class="form-control bg-light" value="<?= $row['hari'] ?> (<?= $row['jam_mulai'] . ' - ' . $row['jam_selesai'] ?>)" readonly>
                         </div>
                     </div>
-                    <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Tanggal</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control bg-light" value="<?= tgl(date('Y-m-d')) ?>" readonly>
-                        </div>
-                    </div>
-
                     <?php
                     $cek = $con->query("SELECT * FROM absensi WHERE id_jadwal = '$id' AND tgl_absensi = '$today'")->fetch_array();
                     if (!$cek && hari(date('D')) == $row['hari']) { ?>
                         <hr>
-                        <table id="tbl" class="table table-striped table-bordered">
-                            <thead class="bg-danger">
-                                <tr align="center">
-                                    <th>No</th>
-                                    <th>Siswa</th>
-                                    <th>NOSIS</th>
-                                    <th>Hadir</th>
-                                    <th>Izin</th>
-                                    <th>Sakit</th>
-                                    <th>Alpa</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <?php
-                                $no1 = 1;
-
-                                $data1 = mysqli_query($con, "SELECT * FROM kelas_siswa_detail a LEFT JOIN kelas_siswa b ON a.kode = b.kode LEFT JOIN siswa c ON a.id_siswa = c.id_siswa WHERE a.kode = '$row[kode]' ");
-                                while ($tampil1 = mysqli_fetch_array($data1)) {
-                                ?>
-                                    <tr>
-                                        <td align="center" width="5%"><?= $no1++; ?></td>
-                                        <td><?= $tampil1['nm_siswa'] ?></td>
-                                        <td align="center"><?= $tampil1['nrp'] ?></td>
-                                        <td align="center">
-                                            <div id="checkHadir">
-                                                <input type="hidden" name="id_siswa[]" value="<?= $tampil1['id_siswa'] ?>">
-                                                <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
-                                            </div>
-                                        </td>
-                                        <td align="center">
-                                            <div id="checkIzin">
-                                                <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
-                                            </div>
-                                        </td>
-                                        <td align="center">
-                                            <div id="checkSakit">
-                                                <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
-                                            </div>
-                                        </td>
-                                        <td align="center">
-                                            <div id="checkAlpa">
-                                                <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
-                                            </div>
-                                        </td>
+                        <div class="table-responsive">
+                            <table id="tbl" class="table table-striped table-bordered">
+                                <thead class="bg-danger">
+                                    <tr align="center">
+                                        <th>No</th>
+                                        <th>Siswa</th>
+                                        <th>NOSIS</th>
+                                        <th>Hadir</th>
+                                        <th>Izin</th>
+                                        <th>Sakit</th>
+                                        <th>Alpa</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+
+                                    <?php
+                                    $no1 = 1;
+
+                                    $data1 = mysqli_query($con, "SELECT * FROM kelas_siswa_detail a LEFT JOIN kelas_siswa b ON a.kode = b.kode LEFT JOIN siswa c ON a.id_siswa = c.id_siswa WHERE a.kode = '$row[kode]' ");
+                                    while ($tampil1 = mysqli_fetch_array($data1)) {
+                                    ?>
+                                        <tr>
+                                            <td align="center" width="5%"><?= $no1++; ?></td>
+                                            <td><?= $tampil1['nm_siswa'] ?></td>
+                                            <td align="center"><?= $tampil1['nrp'] ?></td>
+                                            <td align="center">
+                                                <div id="checkHadir">
+                                                    <input type="hidden" name="id_siswa[]" value="<?= $tampil1['id_siswa'] ?>">
+                                                    <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                </div>
+                                            </td>
+                                            <td align="center">
+                                                <div id="checkIzin">
+                                                    <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                </div>
+                                            </td>
+                                            <td align="center">
+                                                <div id="checkSakit">
+                                                    <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                </div>
+                                            </td>
+                                            <td align="center">
+                                                <div id="checkAlpa">
+                                                    <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="d-grid">
                             <button type="submit" name="submit" class="btn btn-primary fw-bold"><i class="fas fa-check-circle me-2"></i>Simpan Absensi</button>
                         </div>
@@ -134,70 +129,74 @@ $today = date('Y-m-d');
                                 </h2>
                                 <div id="abensi<?= $ca['tgl_absensi'] ?>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                                     <div class="accordion-body">
-                                        <table id="tbl" class="table table-striped table-bordered">
-                                            <thead class="bg-danger">
-                                                <tr align="center">
-                                                    <th>No</th>
-                                                    <th>Siswa</th>
-                                                    <th>NOSIS</th>
-                                                    <th>Hadir</th>
-                                                    <th>Izin</th>
-                                                    <th>Sakit</th>
-                                                    <th>Alpa</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-
-                                                <?php
-                                                $no1 = 1;
-
-                                                $data1 = mysqli_query($con, "SELECT * FROM absensi a LEFT JOIN siswa b ON a.id_siswa = b.id_siswa WHERE id_jadwal = '$id' AND tgl_absensi = '$ca[tgl_absensi]' ");
-                                                while ($tampil1 = mysqli_fetch_array($data1)) {
-                                                ?>
-                                                    <tr>
-                                                        <td align="center" width="5%"><?= $no1++; ?></td>
-                                                        <td><?= $tampil1['nm_siswa'] ?></td>
-                                                        <td align="center"><?= $tampil1['nrp'] ?></td>
-                                                        <td align="center">
-                                                            <div id="checkHadir">
-                                                                <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
-                                                                <?php if ($tampil1['sts'] == 'Hadir') {  ?>
-                                                                    <input type="checkbox" checked id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } else { ?>
-                                                                    <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } ?>
-                                                            </div>
-                                                        </td>
-                                                        <td align="center">
-                                                            <div id="checkIzin">
-                                                                <?php if ($tampil1['sts'] == 'Izin') {  ?>
-                                                                    <input type="checkbox" checked id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } else { ?>
-                                                                    <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } ?>
-                                                            </div>
-                                                        </td>
-                                                        <td align="center">
-                                                            <?php if ($tampil1['sts'] == 'Sakit') {  ?>
-                                                                <input type="checkbox" checked id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                            <?php } else { ?>
-                                                                <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                            <?php } ?>
-                                                        </td>
-                                                        <td align="center">
-                                                            <div id="checkAlpa">
-                                                                <?php if ($tampil1['sts'] == 'Alpa') {  ?>
-                                                                    <input type="checkbox" checked id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } else { ?>
-                                                                    <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
-                                                                <?php } ?>
-                                                            </div>
-                                                        </td>
+                                        <div class="table-responsive">
+                                            <table id="tbl" class="table table-striped table-bordered">
+                                                <thead class="bg-danger">
+                                                    <tr align="center">
+                                                        <th>No</th>
+                                                        <th>Siswa</th>
+                                                        <th>NOSIS</th>
+                                                        <th>Hadir</th>
+                                                        <th>Izin</th>
+                                                        <th>Sakit</th>
+                                                        <th>Alpa</th>
                                                     </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php
+                                                    $no1 = 1;
+
+                                                    $data1 = mysqli_query($con, "SELECT * FROM absensi a LEFT JOIN siswa b ON a.id_siswa = b.id_siswa WHERE id_jadwal = '$id' AND tgl_absensi = '$ca[tgl_absensi]' ");
+                                                    while ($tampil1 = mysqli_fetch_array($data1)) {
+                                                    ?>
+                                                        <tr>
+                                                            <td align="center" width="5%"><?= $no1++; ?></td>
+                                                            <td><?= $tampil1['nm_siswa'] ?></td>
+                                                            <td align="center"><?= $tampil1['nrp'] ?></td>
+                                                            <td align="center">
+                                                                <div id="checkHadir">
+                                                                    <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
+                                                                    <?php if ($tampil1['sts'] == 'Hadir') {  ?>
+                                                                        <input type="checkbox" checked id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } else { ?>
+                                                                        <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </td>
+                                                            <td align="center">
+                                                                <div id="checkIzin">
+                                                                    <?php if ($tampil1['sts'] == 'Izin') {  ?>
+                                                                        <input type="checkbox" checked id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } else { ?>
+                                                                        <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </td>
+                                                            <td align="center">
+                                                                <div id="checkSakit">
+                                                                    <?php if ($tampil1['sts'] == 'Sakit') {  ?>
+                                                                        <input type="checkbox" checked id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } else { ?>
+                                                                        <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </td>
+                                                            <td align="center">
+                                                                <div id="checkAlpa">
+                                                                    <?php if ($tampil1['sts'] == 'Alpa') {  ?>
+                                                                        <input type="checkbox" checked id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } else { ?>
+                                                                        <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <div class="d-grid">
                                             <button type="submit" name="update" class="btn btn-primary fw-bold"><i class="fas fa-check-circle me-2"></i>Update Absensi</button>
                                         </div>

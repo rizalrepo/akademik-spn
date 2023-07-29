@@ -131,7 +131,7 @@ if (!isset($_SESSION['login'])) {
                                                                                                                         } ?>"><i class="fas fa-user-clock me-2"></i>Data Jadwal Mengajar</a>
                                                 </div>
                                             </li>
-                                            <li class="nav-item dropdown <?php if ($page == 'siswa' || $page == 'kelas_siswa' || $page == 'absensi') {
+                                            <li class="nav-item dropdown <?php if ($page == 'siswa' || $page == 'kelas_siswa' || $page == 'absensi' || $page == 'konseling') {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
@@ -144,9 +144,12 @@ if (!isset($_SESSION['login'])) {
                                                     <a href="<?= base_url() ?>/view/admin/kelas-siswa/" class="dropdown-item <?php if ($page == 'kelas_siswa') {
                                                                                                                                     echo 'active';
                                                                                                                                 } ?>"><i class="bi bi-building-check me-2"></i>Data Kelas Siswa</a>
-                                                    <!-- <a href="<?= base_url() ?>/view/admin/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
-                                                                                                                                    echo 'active';
-                                                                                                                                } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a> -->
+                                                    <a href="<?= base_url() ?>/view/admin/konseling/" class="dropdown-item <?php if ($page == 'konseling') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="fas fa-comments me-2"></i>Data Konseling</a>
+                                                    <a href="<?= base_url() ?>/view/admin/absensi/" class="dropdown-item <?php if ($page == 'absensi') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="bi bi-calendar-check me-2"></i>Data Absensi</a>
                                                 </div>
                                             </li>
                                         <?php } else if ($_SESSION['level'] == 2) { ?>

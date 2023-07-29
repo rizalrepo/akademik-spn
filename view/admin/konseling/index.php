@@ -2,9 +2,6 @@
 require '../../../app/config.php';
 $page = 'konseling';
 include_once '../../layout/topbar.php';
-
-$log = $con->query("SELECT * FROM user WHERE id_user = '$_SESSION[id_user]' ")->fetch_array();
-$user = $log['id_gadik'];
 ?>
 
 <div class="page-content">
@@ -13,9 +10,6 @@ $user = $log['id_gadik'];
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
                 <h4 class="page-title mb-0 font-size-18"><i class="fas fa-comments me-2"></i>Data Konseling</h4>
-                <div class="page-title-right">
-                    <a href="tambah" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Tambah Data</a>
-                </div>
             </div>
             <div class="card card-body border border-danger">
 
@@ -45,7 +39,7 @@ $user = $log['id_gadik'];
                         <tbody>
                             <?php
                             $no = 1;
-                            $data = $con->query("SELECT * FROM konseling a LEFT JOIN siswa b ON a.id_siswa = b.id_siswa LEFT JOIN asuhan c ON a.id_asuhan = c.id_asuhan WHERE a.id_gadik = '$user' ORDER BY a.id_konseling DESC");
+                            $data = $con->query("SELECT * FROM konseling a LEFT JOIN siswa b ON a.id_siswa = b.id_siswa LEFT JOIN asuhan c ON a.id_asuhan = c.id_asuhan ORDER BY a.id_konseling DESC");
                             while ($row = $data->fetch_array()) {
                             ?>
                                 <tr>
@@ -57,12 +51,10 @@ $user = $log['id_gadik'];
                                         <b>NOSIS</b> : <?= $row['nrp'] ?>
                                     </td>
                                     <td align="center">Tahun <?= $row['tahun'] . ' ' . $row['gelombang'] ?></td>
-                                    <td align="center" width="11%">
+                                    <td align="center" width="4%">
                                         <span data-bs-target="#id<?= $row[0]; ?>" data-bs-toggle="modal" class="btn bg-success btn-xs text-white">
                                             <span data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><i class="fa fa-info-circle"></i></span>
                                         </span>
-                                        <a href="edit?id=<?= $row[0] ?>" class="btn btn-info btn-xs text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                                        <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="fas fa-trash"></i></a>
                                         <?php include('../../detail/konseling.php'); ?>
                                     </td>
                                 </tr>
