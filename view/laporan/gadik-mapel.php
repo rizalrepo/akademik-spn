@@ -108,7 +108,7 @@ ob_start();
                                     <?php $q = $con->query("SELECT * FROM gadik_mapel a JOIN mapel b ON a.id_mapel = b.id_mapel WHERE a.id_gadik = '$data[id_gadik]' ORDER BY a.id_gadik_mapel ASC ");
                                     $no1 = 1;
                                     while ($d = $q->fetch_array()) { ?>
-                                        <?= $no1++ . '. ' . $d['kd_mapel'] ?> - <?= $d['nm_mapel'] ?>
+                                        <?= $no1++ . '. ' . $d['kd_mapel'] ?> - <?= $d['nm_mapel'] ?> <br>
                                     <?php } ?>
                                 </td>
                                 <td align="center">Tahun <?= $data['tahun'] . ' ' . $data['gelombang'] ?></td>
