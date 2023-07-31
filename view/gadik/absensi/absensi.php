@@ -71,7 +71,7 @@ $today = date('Y-m-d');
                                         <tr>
                                             <td align="center" width="5%"><?= $no1++; ?></td>
                                             <td><?= $tampil1['nm_siswa'] ?></td>
-                                            <td align="center"><?= $tampil1['nis'] ?></td>
+                                            <td align="center"><?= $tampil1['nrp'] ?></td>
                                             <td align="center">
                                                 <div id="checkHadir">
                                                     <input type="hidden" name="id_siswa[]" value="<?= $tampil1['id_siswa'] ?>">
@@ -154,7 +154,7 @@ $today = date('Y-m-d');
                                                         <tr>
                                                             <td align="center" width="5%"><?= $no1++; ?></td>
                                                             <td><?= $tampil1['nm_siswa'] ?></td>
-                                                            <td align="center"><?= $tampil1['nis'] ?></td>
+                                                            <td align="center"><?= $tampil1['nrp'] ?></td>
                                                             <td align="center">
                                                                 <div id="checkHadir">
                                                                     <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
