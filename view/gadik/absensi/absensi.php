@@ -75,22 +75,22 @@ $today = date('Y-m-d');
                                             <td align="center">
                                                 <div id="checkHadir">
                                                     <input type="hidden" name="id_siswa[]" value="<?= $tampil1['id_siswa'] ?>">
-                                                    <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                    <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkIzin">
-                                                    <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                    <input type="checkbox" id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkSakit">
-                                                    <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                    <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkAlpa">
-                                                    <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                    <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
                                                 </div>
                                             </td>
                                         </tr>
@@ -159,36 +159,36 @@ $today = date('Y-m-d');
                                                                 <div id="checkHadir">
                                                                     <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
                                                                     <?php if ($tampil1['sts'] == 'Hadir') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" checked id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkIzin">
                                                                     <?php if ($tampil1['sts'] == 'Izin') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" checked id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Izin" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkSakit">
                                                                     <?php if ($tampil1['sts'] == 'Sakit') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" checked id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkAlpa">
                                                                     <?php if ($tampil1['sts'] == 'Alpa') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" checked id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" onclick="handleCheckboxChange(this)">
+                                                                        <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
@@ -218,23 +218,24 @@ include_once '../../layout/footer.php';
 ?>
 <script src="<?= base_url() ?>/app/js/app.js"></script>
 <script>
-    function handleCheckboxChange(checkbox) {
-        // Mendapatkan semua checkbox dengan nama yang sama
-        const checkboxes = document.querySelectorAll('input[name="sts[]"]');
+    // Mengambil semua elemen checkbox dengan class "single-checkbox"
+    const checkboxes = document.querySelectorAll('.single-checkbox');
 
-        // Cek apakah checkbox tersebut sudah dicek atau belum
-        if (checkbox.checked) {
-            // Jika checkbox tersebut sudah dicek, maka uncheck semua checkbox lainnya
-            checkboxes.forEach((cb) => {
-                if (cb !== checkbox) {
-                    cb.checked = false;
-                }
-            });
-        } else {
-            // Jika checkbox tersebut belum dicek, maka tetap biarkan
-            checkbox.checked = true;
-        }
+    // Fungsi untuk memastikan hanya satu checkbox yang dapat dicentang dalam satu tabel
+    function handleSingleCheck(event) {
+        const checkboxesInRow = event.target.closest('tr').querySelectorAll('.single-checkbox');
+        checkboxesInRow.forEach(checkbox => {
+            // Nonaktifkan checkbox selain yang saat ini dicentang dalam satu tabel
+            if (checkbox !== event.target) {
+                checkbox.checked = false;
+            }
+        });
     }
+
+    // Menambahkan event listener ke setiap checkbox
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', handleSingleCheck);
+    });
 </script>
 
 <?php
