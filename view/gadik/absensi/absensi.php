@@ -71,26 +71,26 @@ $today = date('Y-m-d');
                                         <tr>
                                             <td align="center" width="5%"><?= $no1++; ?></td>
                                             <td><?= $tampil1['nm_siswa'] ?></td>
-                                            <td align="center"><?= $tampil1['nrp'] ?></td>
+                                            <td align="center"><?= $tampil1['nis'] ?></td>
                                             <td align="center">
                                                 <div id="checkHadir">
                                                     <input type="hidden" name="id_siswa[]" value="<?= $tampil1['id_siswa'] ?>">
-                                                    <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
+                                                    <input type="checkbox" value="Hadir" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkIzin">
-                                                    <input type="checkbox" id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
+                                                    <input type="checkbox" value="Izin" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkSakit">
-                                                    <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
+                                                    <input type="checkbox" value="Sakit" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                 </div>
                                             </td>
                                             <td align="center">
                                                 <div id="checkAlpa">
-                                                    <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
+                                                    <input type="checkbox" value="Alpa" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                 </div>
                                             </td>
                                         </tr>
@@ -154,41 +154,41 @@ $today = date('Y-m-d');
                                                         <tr>
                                                             <td align="center" width="5%"><?= $no1++; ?></td>
                                                             <td><?= $tampil1['nm_siswa'] ?></td>
-                                                            <td align="center"><?= $tampil1['nrp'] ?></td>
+                                                            <td align="center"><?= $tampil1['nis'] ?></td>
                                                             <td align="center">
                                                                 <div id="checkHadir">
                                                                     <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
                                                                     <?php if ($tampil1['sts'] == 'Hadir') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" checked value="Hadir" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Hadir" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" value="Hadir" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkIzin">
                                                                     <?php if ($tampil1['sts'] == 'Izin') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" checked value="Izin" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Izin" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" value="Izin" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkSakit">
                                                                     <?php if ($tampil1['sts'] == 'Sakit') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" checked value="Sakit" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Sakit" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" value="Sakit" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
                                                             <td align="center">
                                                                 <div id="checkAlpa">
                                                                     <?php if ($tampil1['sts'] == 'Alpa') {  ?>
-                                                                        <input type="checkbox" checked id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" checked value="Alpa" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } else { ?>
-                                                                        <input type="checkbox" id="checkItem" value="Alpa" name="sts[]" class="single-checkbox">
+                                                                        <input type="checkbox" value="Alpa" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } ?>
                                                                 </div>
                                                             </td>
@@ -240,32 +240,44 @@ include_once '../../layout/footer.php';
 
 <?php
 if (isset($_POST['submit'])) {
-    foreach ($_POST['sts'] as $sts) {
-        foreach ($_POST['id_siswa'] as $idSiswa) {
-            $tambah = $con->query("INSERT INTO absensi VALUES (
+    if (isset($_POST['id_siswa']) && is_array($_POST['id_siswa'])) {
+        foreach ($_POST['id_siswa'] as $id_siswa) {
+            // Periksa status yang dipilih
+            if (isset($_POST['sts'][$id_siswa])) {
+                $status = $con->real_escape_string($_POST['sts'][$id_siswa]);
+
+                $con->query("INSERT INTO absensi VALUES (
                     default,
                     '$id', 
                     '$today', 
-                    '$idSiswa',
-                    '$sts'
+                    '$id_siswa',
+                    '$status'
                 )");
+            }
         }
+        $_SESSION['pesan'] = "Data Absensi Siswa Berhasil di Simpan";
+        echo "<meta http-equiv='refresh' content='0; url=absensi?id=$id&ta=$dt'>";
+    } else {
+        echo "No data selected.";
     }
-
-    $_SESSION['pesan'] = "Data Absensi Siswa Berhasil di Simpan";
-    echo "<meta http-equiv='refresh' content='0; url=absensi?id=$id&ta=$dt'>";
 }
 
 if (isset($_POST['update'])) {
-    foreach ($_POST['sts'] as $sts) {
-        $update = $con->query("UPDATE absensi SET 
-            sts = '$sts'
-            WHERE tgl_absensi = '$_POST[tgl_absensi]'
-        ");
-    }
+    if (isset($_POST['sts']) && is_array($_POST['sts'])) {
+        foreach ($_POST['sts'] as $id_siswa => $status) {
+            $id_siswa = $con->real_escape_string($id_siswa);
+            $status = $con->real_escape_string($status);
 
-    $_SESSION['pesan'] = "Data Absensi Siswa Berhasil di Update";
-    echo "<meta http-equiv='refresh' content='0; url=absensi?id=$id&ta=$dt'>";
+            $con->query("UPDATE absensi SET 
+                sts = '$status'
+                WHERE id_siswa = '$id_siswa'
+            ");
+        }
+        $_SESSION['pesan'] = "Data Absensi Siswa Berhasil di Update";
+        echo "<meta http-equiv='refresh' content='0; url=absensi?id=$id&ta=$dt'>";
+    } else {
+        echo "No data selected.";
+    }
 }
 
 ?>
