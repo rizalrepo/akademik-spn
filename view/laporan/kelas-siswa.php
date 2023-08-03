@@ -3,6 +3,8 @@ include '../../app/config.php';
 
 $no = 1;
 
+$maxAlpa = $con->query("SELECT jumlah FROM alpa WHERE id = 1")->fetch_assoc();
+
 $id_kelas_siswa = $_GET['id_kelas_siswa'];
 $cekid_kelas_siswa = isset($id_kelas_siswa);
 $id_asuhan = $_GET['id_asuhan'];
@@ -116,6 +118,7 @@ ob_start();
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
                                                 <th>NOSIS</th>
+                                                <th>Ket</th>
                                                 <th>Wali</th>
                                             </tr>
                                         </thead>
@@ -130,6 +133,16 @@ ob_start();
                                                     <td align="center" width="5%"><?= $no1++; ?></td>
                                                     <td><?= $tampil1['nm_siswa'] ?></td>
                                                     <td align="center"><?= $tampil1['nrp'] ?></td>
+                                                    <td align="center">
+                                                        <?php
+                                                        $alpa = $con->query("SELECT COUNT(*) AS total FROM absensi a LEFT JOIN jadwal b ON a.id_jadwal = b.id_jadwal WHERE a.id_siswa = $tampil1[id_siswa] AND sts = 'Alpa' AND b.id_asuhan = '$data[id_asuhan]'")->fetch_array();
+                                                        if ($alpa['total'] > $maxAlpa['jumlah']) {
+                                                            echo 'Tidak Lulus';
+                                                        } else {
+                                                            echo '-';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td><?= $tampil1['nm_wali'] ?></td>
                                                 </tr>
                                             <?php } ?>

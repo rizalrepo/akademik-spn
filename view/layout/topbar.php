@@ -79,7 +79,7 @@ if (!isset($_SESSION['login'])) {
                                                 </a>
                                             </li>
 
-                                            <li class="nav-item dropdown <?php if ($page == 'user' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas') {
+                                            <li class="nav-item dropdown <?php if ($page == 'user' || $page == 'jabatan' || $page == 'pangkat' || $page == 'asuhan' || $page == 'jabatan_asuhan' || $page == 'mapel' || $page == 'kelas' || $page == 'setting') {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
@@ -107,6 +107,9 @@ if (!isset($_SESSION['login'])) {
                                                     <a href="<?= base_url() ?>/view/admin/kelas/" class="dropdown-item <?php if ($page == 'kelas') {
                                                                                                                             echo 'active';
                                                                                                                         } ?>"><i class="bi bi-building me-2"></i>Data Ruang Kelas</a>
+                                                    <a href="<?= base_url() ?>/view/admin/setting/" class="dropdown-item <?php if ($page == 'setting') {
+                                                                                                                                echo 'active';
+                                                                                                                            } ?>"><i class="fas fa-cogs me-2"></i>Setting Jumlah Alpa</a>
                                                 </div>
                                             </li>
 

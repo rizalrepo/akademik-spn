@@ -4,6 +4,8 @@ $con = mysqli_connect($con['host'], $con['user'], $con['pass'], $con['db']);
 if (mysqli_connect_errno()) {
     echo mysqli_connect_error();
 }
+
+$maxAlpa = $con->query("SELECT jumlah FROM alpa WHERE id = 1")->fetch_assoc();
 ?>
 <div id="id<?= $id = $row[0]; ?>" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="custom-width-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -43,6 +45,7 @@ if (mysqli_connect_errno()) {
                                     <th>No</th>
                                     <th>Nama Siswa</th>
                                     <th>NOSIS</th>
+                                    <th>Ket</th>
                                     <th>Wali</th>
                                 </tr>
                             </thead>
@@ -57,6 +60,16 @@ if (mysqli_connect_errno()) {
                                         <td align="center"><?= $no1++; ?></td>
                                         <td><?= $tampil1['nm_siswa'] ?></td>
                                         <td align="center"><?= $tampil1['nrp'] ?></td>
+                                        <td align="center">
+                                            <?php
+                                            $alpa = $con->query("SELECT COUNT(*) AS total FROM absensi a LEFT JOIN jadwal b ON a.id_jadwal = b.id_jadwal WHERE a.id_siswa = $tampil1[id_siswa] AND sts = 'Alpa' AND b.id_asuhan = '$d[id_asuhan]'")->fetch_array();
+                                            if ($alpa['total'] > $maxAlpa['jumlah']) {
+                                                echo 'Tidak Lulus';
+                                            } else {
+                                                echo '-';
+                                            }
+                                            ?>
+                                        </td>
                                         <td><?= $tampil1['nm_wali'] ?></td>
                                     </tr>
                                 <?php } ?>
