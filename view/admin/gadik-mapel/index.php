@@ -8,7 +8,7 @@ include_once '../../layout/topbar.php';
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Tenaga Pendidik Mata Pelajaran</h4>
             </div>
             <div class="card card-body border border-danger">
                 <form action="data" method="GET">

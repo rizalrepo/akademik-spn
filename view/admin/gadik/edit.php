@@ -18,7 +18,7 @@ $jk2 = [
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Edit Data Gadik</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Edit Data Tenaga Pendidik</h4>
 
                 <div class="page-title-right">
                     <a href="index" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Gadik</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Tenaga Pendidik</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -86,7 +86,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Gadik Mapel</h5>
+                <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Laporan Data Tenaga Pendidik Mata Pelajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <div class="form-group">
-                                <label class="col-form-label fw-semibold">Gadik Mapel</label>
+                                <label class="col-form-label fw-semibold">Tenaga Pendidik Mata Pelajaran</label>
                                 <select name="id_gadik_mapel" class="form-select" id="selectGadikJadwal" style="width: 100%;">
                                     <option value="">-- Pilih --</option>
                                     <?php $data = $con->query("SELECT * FROM gadik_mapel a LEFT JOIN gadik b ON a.id_gadik = b.id_gadik GROUP BY a.id_gadik ORDER BY a.id_gadik_mapel ASC"); ?>

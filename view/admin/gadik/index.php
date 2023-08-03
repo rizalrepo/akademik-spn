@@ -9,7 +9,7 @@ include_once '../../layout/topbar.php';
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Data Gadik</h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-id-badge me-2"></i>Data Tenaga Pendidik</h4>
 
                 <div class="page-title-right">
                     <a href="tambah" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Tambah Data</a>

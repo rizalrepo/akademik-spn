@@ -20,7 +20,7 @@ if (mysqli_connect_errno()) {
                 <div class="col-md-12">
                     <div class="card-body text-start">
                         <dl class="row">
-                            <dt class="col-sm-3">Nama Gadik</dt>
+                            <dt class="col-sm-3">Nama Tenaga Pendidik</dt>
                             <dd class="col-sm-9">: <?= $d['nm_gadik'] ?></dd>
                             <dt class="col-sm-3">NRP / NIP</dt>
                             <dd class="col-sm-9">: <?= $d['nrp_nip'] ?></dd>

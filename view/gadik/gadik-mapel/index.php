@@ -12,11 +12,7 @@ $user = $log['id_gadik'];
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</h4>
-
-                <div class="page-title-right">
-                    <a href="tambah?ta=<?= $dt ?>" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Tambah Data</a>
-                </div>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Tenaga Pendidik Mata Pelajaran</h4>
             </div>
             <div class="card card-body border border-danger">
 
@@ -35,7 +31,7 @@ $user = $log['id_gadik'];
                         <thead class="bg-danger">
                             <tr>
                                 <th>No</th>
-                                <th>Data Gadik</th>
+                                <th>Data Tenaga Pendidik</th>
                                 <th>Mata Pelajaran</th>
                                 <th>Tahun Asuhan</th>
                             </tr>

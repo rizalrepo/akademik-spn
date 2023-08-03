@@ -11,7 +11,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Tambah Data Gadik Mapel Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Tambah Data Tenaga Pendidik Mata Pelajaran Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
 
                 <div class="page-title-right">
                     <a href="data?ta=<?= $dt ?>" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
@@ -20,7 +20,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
             <div class="card card-body border border-danger mb-5">
                 <form class="form-horizontal needs-validation" novalidate method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Nama Gadik</label>
+                        <label class="col-sm-2 col-form-label">Nama Tenaga Pendidik</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="text" class="form-control" hidden name="id_gadik" id="id_gadik" required>

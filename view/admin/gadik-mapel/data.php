@@ -12,7 +12,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
 
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
+                <h4 class="page-title mb-0 font-size-18"><i class="fas fa-address-book me-2"></i>Data Tenaga Pendidik Mata Pelajaran Tahun <?= $title['tahun'] . ' ' . $title['gelombang'] ?></h4>
 
                 <div class="page-title-right">
                     <a href="tambah?ta=<?= $dt ?>" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Tambah Data</a>
@@ -55,7 +55,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
                         <thead class="bg-danger">
                             <tr>
                                 <th>No</th>
-                                <th>Data Gadik</th>
+                                <th>Data Tenaga Pendidik</th>
                                 <th>Mata Pelajaran</th>
                                 <th>Tahun Asuhan</th>
                                 <th>Aksi</th>

@@ -26,7 +26,7 @@ if (mysqli_connect_errno()) {
                             <dd class="col-sm-9">: <?= $d['nm_kelas'] ?></dd>
                             <dt class="col-sm-3">Mata Pelajaran</dt>
                             <dd class="col-sm-9">: <?= $d['kd_mapel'] . ' - ' . $d['nm_mapel'] ?></dd>
-                            <dt class="col-sm-3">Gadik</dt>
+                            <dt class="col-sm-3">Tenaga Pendidik</dt>
                             <dd class="col-sm-9">: NRP/NIP <?= $d['nrp_nip'] . ' | ' . $d['nm_gadik'] ?></dd>
                         </dl>
 

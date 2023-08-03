@@ -117,18 +117,18 @@ if (!isset($_SESSION['login'])) {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
-                                                    <i class="fas fa-user-graduate me-2"></i>Menu Gadik <div class="arrow-down"></div>
+                                                    <i class="fas fa-user-graduate me-2"></i>Menu Tenaga Pendidik <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-gadik">
                                                     <a href="<?= base_url() ?>/view/admin/gadik/" class="dropdown-item <?php if ($page == 'gadik') {
                                                                                                                             echo 'active';
-                                                                                                                        } ?>"><i class="fas fa-id-badge me-2"></i>Data Gadik</a>
+                                                                                                                        } ?>"><i class="fas fa-id-badge me-2"></i>Data Tenaga Pendidik</a>
                                                     <a href="<?= base_url() ?>/view/admin/pengasuh/" class="dropdown-item <?php if ($page == 'pengasuh') {
                                                                                                                                 echo 'active';
                                                                                                                             } ?>"><i class="fas fa-house-user me-2"></i>Data Pengasuh</a>
                                                     <a href="<?= base_url() ?>/view/admin/gadik-mapel/" class="dropdown-item <?php if ($page == 'gadik_mapel') {
                                                                                                                                     echo 'active';
-                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</a>
+                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Tenaga Pendidik Mata Pelajaran</a>
                                                     <a href="<?= base_url() ?>/view/admin/jadwal/" class="dropdown-item <?php if ($page == 'jadwal') {
                                                                                                                             echo 'active';
                                                                                                                         } ?>"><i class="fas fa-user-clock me-2"></i>Data Jadwal Mengajar</a>
@@ -161,10 +161,10 @@ if (!isset($_SESSION['login'])) {
                                                     <i class="fas fa-file-alt me-2"></i>Laporan Cetak <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-laporan">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Tenaga Pendidik</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapPengasuh" class="dropdown-item"><i class="far fa-circle me-2"></i>Pengasuh</a>
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadikMapel" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik Mapel</a>
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapJadwal" class="dropdown-item"><i class="far fa-circle me-2"></i>Jadwal Mengajar Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadikMapel" class="dropdown-item"><i class="far fa-circle me-2"></i>Tenaga Pendidik Mata Pelajaran</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapJadwal" class="dropdown-item"><i class="far fa-circle me-2"></i>Jadwal Mengajar Tenaga Pendidik</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapSiswa" class="dropdown-item"><i class="far fa-circle me-2"></i>Siswa</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapKelas" class="dropdown-item"><i class="far fa-circle me-2"></i>Kelas Siswa</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapKonseling" class="dropdown-item"><i class="far fa-circle me-2"></i>Konseling</a>
@@ -184,10 +184,10 @@ if (!isset($_SESSION['login'])) {
                                                     <i class="fas fa-file-alt me-2"></i>Laporan Cetak <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-laporan">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadik" class="dropdown-item"><i class="far fa-circle me-2"></i>Tenaga Pendidik</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapPengasuh" class="dropdown-item"><i class="far fa-circle me-2"></i>Pengasuh</a>
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadikMapel" class="dropdown-item"><i class="far fa-circle me-2"></i>Gadik Mapel</a>
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapJadwal" class="dropdown-item"><i class="far fa-circle me-2"></i>Jadwal Mengajar Gadik</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapGadikMapel" class="dropdown-item"><i class="far fa-circle me-2"></i>Tenaga Pendidik Mata Pelajaran</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#lapJadwal" class="dropdown-item"><i class="far fa-circle me-2"></i>Jadwal Mengajar Tenaga Pendidik</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapSiswa" class="dropdown-item"><i class="far fa-circle me-2"></i>Siswa</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapKelas" class="dropdown-item"><i class="far fa-circle me-2"></i>Kelas Siswa</a>
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#lapKonseling" class="dropdown-item"><i class="far fa-circle me-2"></i>Konseling</a>
@@ -206,7 +206,7 @@ if (!isset($_SESSION['login'])) {
                                                                                 echo 'active';
                                                                             } ?>">
                                                 <a class="nav-link dropdown-toggle arrow-none" href="#" role="button">
-                                                    <i class="fas fa-user-graduate me-2"></i>Menu Gadik <div class="arrow-down"></div>
+                                                    <i class="fas fa-user-graduate me-2"></i>Menu Tenaga Pendidik <div class="arrow-down"></div>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="topnav-gadik">
                                                     <a href="<?= base_url() ?>/view/gadik/pengasuh/" class="dropdown-item <?php if ($page == 'pengasuh') {
@@ -214,7 +214,7 @@ if (!isset($_SESSION['login'])) {
                                                                                                                             } ?>"><i class="fas fa-house-user me-2"></i>Data Pengasuh</a>
                                                     <a href="<?= base_url() ?>/view/gadik/gadik-mapel/" class="dropdown-item <?php if ($page == 'gadik_mapel') {
                                                                                                                                     echo 'active';
-                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Gadik Mapel</a>
+                                                                                                                                } ?>"><i class="fas fa-address-book me-2"></i>Data Tenaga Pendidik Mata Pelajaran</a>
                                                     <a href="<?= base_url() ?>/view/gadik/jadwal/" class="dropdown-item <?php if ($page == 'jadwal') {
                                                                                                                             echo 'active';
                                                                                                                         } ?>"><i class="fas fa-user-clock me-2"></i>Data Jadwal Mengajar</a>

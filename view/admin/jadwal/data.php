@@ -51,7 +51,7 @@ $title = $con->query("SELECT * FROM asuhan WHERE id_asuhan = '$dt'")->fetch_arra
                         <thead class="bg-danger">
                             <tr>
                                 <th>No</th>
-                                <th>Data Gadik</th>
+                                <th>Data Tenaga Pendidik</th>
                                 <th>Mata Pelajaran</th>
                                 <th>Tahun Asuhan</th>
                                 <th>Aksi</th>
