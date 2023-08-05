@@ -21,6 +21,7 @@ if (mysqli_connect_errno()) {
 function base_url($url = null)
 {
   $base_url = "http://localhost/akademik-spn";
+  // $base_url = "https://akademik-spn.rizdev.my.id/";
   if ($url != null) {
     return $base_url . "/" . $url;
   } else {
@@ -66,7 +67,7 @@ function hari($tanggal)
     "Selasa",
     "Rabu",
     "Kamis",
-    "Jum'at",
+    "Jum`at",
     "Sabtu",
     "Minggu"
   );
