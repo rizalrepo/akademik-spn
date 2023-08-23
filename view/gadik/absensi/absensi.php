@@ -157,7 +157,7 @@ $today = date('Y-m-d');
                                                             <td align="center"><?= $tampil1['nrp'] ?></td>
                                                             <td align="center">
                                                                 <div id="checkHadir">
-                                                                    <input type="hidden" name="tgl_absensi" value="<?= $tampil1['tgl_absensi'] ?>">
+
                                                                     <?php if ($tampil1['sts'] == 'Hadir') {  ?>
                                                                         <input type="checkbox" checked value="Hadir" name="sts[<?= $tampil1['id_siswa'] ?>]" class="single-checkbox">
                                                                     <?php } else { ?>
@@ -198,6 +198,7 @@ $today = date('Y-m-d');
                                             </table>
                                         </div>
                                         <div class="d-grid">
+                                            <input type="hidden" name="tgl_absensi" value="<?= $ca['tgl_absensi'] ?>">
                                             <button type="submit" name="update" class="btn btn-primary fw-bold"><i class="fas fa-check-circle me-2"></i>Update Absensi</button>
                                         </div>
                                     </div>
@@ -270,7 +271,7 @@ if (isset($_POST['update'])) {
 
             $con->query("UPDATE absensi SET 
                 sts = '$status'
-                WHERE id_siswa = '$id_siswa'
+                WHERE id_siswa = '$id_siswa' AND tgl_absensi = '$_POST[tgl_absensi]'
             ");
         }
         $_SESSION['pesan'] = "Data Absensi Siswa Berhasil di Update";
