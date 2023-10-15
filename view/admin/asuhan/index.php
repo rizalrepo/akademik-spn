@@ -34,6 +34,7 @@ include_once '../../layout/topbar.php';
                                 <th>No</th>
                                 <th>Tahun</th>
                                 <th>Gelombang</th>
+                                <th>Jumlah Kuota Siswa</th>
                                 <th>Jumlah Siswa</th>
                                 <th>Aksi</th>
                             </tr>
@@ -49,7 +50,17 @@ include_once '../../layout/topbar.php';
                                     <td align="center" width="5%"><?= $no++ ?></td>
                                     <td align="center"><?= $row['tahun'] ?></td>
                                     <td align="center"><?= $row['gelombang'] ?></td>
-                                    <td align="center"><?= $row['jml_siswa'] ?></td>
+                                    <td align="center"><?= $row['jml_siswa'] ?> Orang</td>
+                                    <td align="center">
+                                        <?php
+                                        if ($row['gelombang'] == 'Gelombang I') {
+                                            $jml = $con->query("SELECT COUNT(*) AS jumlah FROM siswa WHERE YEAR(tgl_daftar) = '$row[tahun]' AND MONTH(tgl_daftar) BETWEEN 2 AND 6")->fetch_assoc();
+                                        } else if ($row['gelombang'] == 'Gelombang II') {
+                                            $jml = $con->query("SELECT COUNT(*) AS jumlah FROM siswa WHERE YEAR(tgl_daftar) = '$row[tahun]' AND MONTH(tgl_daftar) BETWEEN 7 AND 12")->fetch_assoc();
+                                        }
+                                        echo $jml['jumlah'];
+                                        ?>
+                                    </td>
                                     <td align="center" width="14%">
                                         <a href="edit?id=<?= $row[0] ?>" class="btn text-white btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i> Edit</a>
                                         <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>

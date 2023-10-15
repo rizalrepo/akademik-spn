@@ -2,6 +2,12 @@
 require '../../../app/config.php';
 $page = 'asuhan';
 include_once '../../layout/topbar.php';
+
+$gel = [
+    '' => '-- Pilih --',
+    'Gelombang I' => 'Gelombang I',
+    'Gelombang II' => 'Gelombang II',
+];
 ?>
 
 <div class="page-content">
@@ -28,12 +34,12 @@ include_once '../../layout/topbar.php';
                     <div class="form-group row mb-3">
                         <label class="col-sm-2 col-form-label">Gelombang</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="gelombang" required>
-                            <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
+                            <?= form_dropdown('gelombang', $gel, '', 'class="form-select" required') ?>
+                            <div class="invalid-feedback">Kolom harus di pilih !</div>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-sm-2 col-form-label">Jumlah Siswa</label>
+                        <label class="col-sm-2 col-form-label">Jumlah Kuota Siswa</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control" name="jml_siswa" required>
                             <div class="invalid-feedback">Kolom tidak boleh kosong !</div>
